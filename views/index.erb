@@ -1,0 +1,135 @@
+<style>
+.row {
+  display: flex;
+}
+
+h3 {
+  margin: 0;
+  padding: 6px;
+}
+
+h3, .selection, .filters, .panel, .top {
+  border: 3px solid black;
+}
+
+.selection {
+  padding: 6px;
+}
+
+.filters, .panel, h3, .save {
+  width: 50%;
+}
+
+.filter {
+  padding: 6px;
+  background-color: #CCC;
+  cursor: pointer;
+}
+
+.filter:hover {
+  background-color: #DDD;
+}
+
+img {
+  cursor: pointer;
+}
+
+</style>
+
+<main>
+  <div class="row top">
+    <h3>Auswahl</h3>
+    <button class="save">Speichern</button>
+  </div>
+  <div class="selection"></div>
+  <div class="row">
+    <div class="filters">
+      <% @filters.each do |filter| %>
+        <div class="filter" data-code="<%= filter['Code'] %>"><%= filter['Type'] %> - <%= filter['Title'] %></div>
+      <% end %>
+    </div>
+
+    <div class="panel"></div>
+  </div>
+</main>
+
+<script>
+const key = 'image-list';
+
+const selection = document.querySelector('.selection');
+const panel = document.querySelector('.panel');
+const filters = document.querySelectorAll('.filter');
+const save = document.querySelector('.save');
+
+save.addEventListener('click', function() {
+  const name = prompt("Bitte Namen oder Fantasienamen eingeben");
+  alert("Reihe wurde gespeichert");
+});
+
+updateSelection();
+
+for(const filter of filters) {
+  filter.addEventListener('click', function() {
+    const code = this.getAttribute('data-code');
+    fetch('/images?filter=' + code)
+      .then(response => response.json())
+      .then((data) => {
+        panel.innerHTML = '';
+        for(const datum of data) {
+          const img = document.createElement('img');
+          img.src = `https://archiv.juergstraumann.ch/${datum}`;
+          img.addEventListener('click', function() {
+            console.log(this.src);
+            appendStorage(this.src);
+            updateSelection();
+          });
+          panel.appendChild(img);
+        }
+      });
+    });
+}
+
+function appendStorage(src) {
+  let old = localStorage.getItem(key);
+  if(old) {
+    old = JSON.parse(old);
+  } else {
+    old = [];
+  }
+  old.push(src);
+  localStorage.setItem(key, JSON.stringify(old));
+}
+
+function removeStorage(src) {
+  let old = localStorage.getItem(key);
+  if(old) {
+    old = JSON.parse(old);
+  } else {
+    old = [];
+  }
+  const idx = old.indexOf(src);
+  old.splice(idx, 1);
+  localStorage.setItem(key, JSON.stringify(old));
+}
+
+function updateSelection() {
+  selection.innerHTML = '';
+  let old = localStorage.getItem(key);
+  if(old) {
+    old = JSON.parse(old);
+  } else {
+    old = [];
+  }
+  for(const image of old) {
+    const img = document.createElement('img');
+    img.src = image;
+    img.addEventListener('click', function() {
+      console.log(this.src);
+      removeStorage(this.src);
+      updateSelection();
+    });
+    selection.appendChild(img);
+  }
+}
+
+</script>
