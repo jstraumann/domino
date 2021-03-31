@@ -16,6 +16,8 @@
             <div class="item">Speichern</div>
             <div class="item">Impressum</div>
           </div>
+
+          <div class="images"></div>
         </div>
 
         <div class="filters">
@@ -37,7 +39,7 @@
         </div>
 
         <div class="hud bottom actions">
-          <div class="line">Auswahl <input type="text" class="hud-count" readonly value="<%= @stats.total %>"></div>
+          <div class="line">Auswahl <input type="text" class="hud-count" readonly value="<%= @stats['total'] %>"></div>
           <div class="line"><input type="submit" class="hud-show" value="Anzeigen"></div>
           <div class="line"><input type="submit" class="hud-reset" value="Neuauswahl"></div>
         </div>
@@ -46,12 +48,15 @@
           <div class="hud top">
             <div class="line"><input type="submit" class="choice-back" value="Zurück"></div>
           </div>
-          <% @images.each do |image| %>
-            <img src="https://archiv.juergstraumann.ch/<%= image %>">
-          <% end %>
+          <div class="images">
+            <% @images.each do |image| %>
+              <img src="https://archiv.juergstraumann.ch/<%= image['thumb'] %>" data-info="<%= CGI.escapeHTML image.to_json %>">
+            <% end %>
+          </div>
         </div>
 
         <script src="javascripts/querystring.js"></script>
+        <script src="javascripts/selection.js"></script>
         <script src="javascripts/main.js"></script>
     </body>
 </html>

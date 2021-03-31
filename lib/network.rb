@@ -9,6 +9,6 @@ class Network
 
   def self.get_json(url)
     response = self.get(url)
-    JSON.parse(response, object_class: OpenStruct)
+    JSON.parse(response)
   end
 end

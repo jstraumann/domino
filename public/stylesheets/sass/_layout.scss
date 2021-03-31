@@ -1,3 +1,5 @@
+@import '_settings';
+
 * {
   margin: 0;
   padding: 0;
@@ -15,6 +17,55 @@ body, input {
   height: 50vh;
   box-sizing: border-box;
   overflow: hidden;
+}
+
+.selection {
+  .images {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: scroll;
+
+    .img-container {
+      position: relative;
+      margin-left: $global_padding;
+
+      &:last-child {
+        margin-right: $global_padding;
+      }
+
+      &.quadratisch.mittel { height: $gallery_height * 1; }
+      &.quadratisch.klein { height: $gallery_height * 0.6; }
+      &.quadratisch.gross { height: $gallery_height * 1.5; }
+
+      &.hoch.mittel { height: $gallery_height * 1.5; }
+      &.hoch.klein { height: $gallery_height * 1; }
+      &.hoch.gross { height: $gallery_height * 1.8; }
+
+      &.breit.mittel { height: $gallery_height * 1; }
+      &.breit.klein { height: $gallery_height * 0.6; }
+      &.breit.gross { height: $gallery_height * 1.5; }
+
+      img {
+        height: 100%;
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        // padding: $global_padding;
+        background-color: $off_black;
+        color: $off_white;
+        transition: opacity 0.4s ease-in-out;
+        opacity: 0;
+      }
+    }
+  }
 }
 
 .filters {
@@ -50,6 +101,21 @@ body, input {
   height: 100vh;
   width: 100%;
   top: 100vh;
-  background-color: lightblue;
+  background-color: $off_white;
   transition: top 1s ease 0s;
+
+  .images {
+    display: grid;
+    grid-template-columns: repeat(9, 1fr);
+    grid-gap: $global_padding;
+    margin-top: $global_padding;
+    margin-left: $global_padding;
+    margin-right: $global_padding;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
 }
