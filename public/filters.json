@@ -3,6 +3,7 @@
     "category": "Motiv",
     "heading": "Menschen",
     "kind": "Paraphrasen",
+    "column": 1,
     "filters": [
       { "name": "Einzelne", "code": "Kr5a" },
       { "name": "Paare", "code": "Kr5b" },
@@ -14,6 +15,7 @@
     "category": "Motiv",
     "heading": null,
     "kind": "Motiven",
+    "column": 1,
     "filters": [
       { "name": "Mischwesen", "code": "Mw" },
       { "name": "Tiere", "code": "Tie" },
@@ -24,6 +26,7 @@
     "category": "Motiv",
     "heading": null,
     "kind": "Motiven",
+    "column": 2,
     "filters": [
       { "name": "Architektur", "code": "Ar" },
       { "name": "Intérieurs", "code": "Ar" },

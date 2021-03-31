@@ -21,19 +21,26 @@
         </div>
 
         <div class="filters">
-          <% Filter.all.each do |filter| %>
-            <div class="category">
-              <div class="head">
-                <h3><%= filter.category %></h3>
-                <% if filter.heading %>
-                  <h5><%= filter.heading %></h5>
-                <% end %>
-              </div>
-              <div class="content">
-                <% filter.filters.each do |f| %>
-                  <div class="filter" data-kind="<%= filter.kind %>"  data-code="<%= f.code %>"><%= f.name %></div>
-                <% end %>
-              </div>
+          <% (1..2).each do |col| %>
+            <div class="column">
+              <% @filters.select{ |f| f.column == col }.each do |filter| %>
+                <div class="category">
+                  <div class="head">
+                    <h3><%= filter.category %></h3>
+                    <% if filter.heading %>
+                      <h5><%= filter.heading %></h5>
+                    <% end %>
+                  </div>
+                  <div class="content">
+                    <% filter.filters.each do |f| %>
+                      <div class="filter" data-kind="<%= filter.kind %>" data-code="<%= f.code %>">
+                        <div class="indicator <%= 'active' if (params[:filter] || []).index(filter.kind + "=" + f.code) %>"></div>
+                        <%= f.name %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>

@@ -22,6 +22,7 @@ class Domino < Sinatra::Base
   get '/' do
     @stats = Search.stats(params[:filter] || [])
     @images = Image.get(params[:filter] || [])
+    @filters = Filter.all
     erb :index
   end
 end
