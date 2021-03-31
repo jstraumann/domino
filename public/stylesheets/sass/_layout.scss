@@ -20,6 +20,15 @@ body, input {
 }
 
 .selection {
+  .image-scroll-right {
+    position: absolute;
+    top: 25%;
+    right: 0;
+    font-size: 5rem;
+    cursor: pointer;
+    background-color: #DDD;
+  }
+
   .images {
     height: 100%;
     display: flex;

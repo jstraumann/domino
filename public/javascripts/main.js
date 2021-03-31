@@ -98,3 +98,16 @@ function refreshSelection() {
     });
   }
 }
+
+/**** IMAGE SELECTION SCROLLER *****/
+
+const scrollRightButton = document.querySelector('.image-scroll-right');
+
+scrollRightButton.addEventListener('click', function() {
+  const selection = document.querySelector('.images');
+  selection.scroll({
+    top: 0,
+    left: selection.scrollLeft + 500,
+    behavior: 'smooth'
+  });
+});
