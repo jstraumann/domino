@@ -1,3 +1,4 @@
+require 'uri'
 require "sinatra/activerecord/rake"
 
 namespace :db do
