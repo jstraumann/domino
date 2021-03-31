@@ -21,7 +21,7 @@
         </div>
 
         <div class="filters">
-          <% (1..2).each do |col| %>
+          <% (1..7).each do |col| %>
             <div class="column">
               <% @filters.select{ |f| f.column == col }.each do |filter| %>
                 <div class="category">
@@ -33,10 +33,14 @@
                   </div>
                   <div class="content">
                     <% filter.filters.each do |f| %>
-                      <div class="filter" data-kind="<%= filter.kind %>" data-code="<%= f.code %>">
-                        <div class="indicator <%= 'active' if (params[:filter] || []).index(filter.kind + "=" + f.code) %>"></div>
-                        <%= f.name %>
-                      </div>
+                      <% if f.code %>
+                        <div class="filter" data-kind="<%= filter.kind %>" data-code="<%= f.code %>">
+                          <div class="indicator <%= 'active' if (params[:filter] || []).index(filter.kind + "=" + f.code) %>"></div>
+                          <%= f.name %>
+                        </div>
+                      <% else %>
+                        <div class="filter">&nbsp;</div>
+                      <% end %>
                     <% end %>
                   </div>
                 </div>

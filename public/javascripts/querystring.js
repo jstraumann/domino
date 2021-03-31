@@ -22,8 +22,19 @@ class QS {
     }
   }
 
-  remove(key) {
-    delete this.qs[key];
+  remove(key, value) {
+    if(key.endsWith("[]")) {
+      const idx = this.qs[key].indexOf(value);
+      const oldVal = this.qs[key];
+      oldVal.splice(idx, 1);
+      if(oldVal.length > 0) {
+        this.qs[key] = oldVal;
+      } else {
+        delete this.qs[key];
+      }
+    } else {
+      delete this.qs[key];
+    }
   }
 
   getQueryString() {

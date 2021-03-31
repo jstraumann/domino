@@ -36,5 +36,89 @@
       { "name": "Vorhang", "code": "Vo" },
       { "name": "Black Box", "code": "bb" }
     ]
+  }, {
+    "category": "Technik",
+    "heading": null,
+    "kind": "Technik",
+    "column": 3,
+    "filters": [
+      { "name": "Bleistift", "code": "B" },
+      { "name": "Kohle", "code": "K" },
+      { "name": "Farbstift", "code": "Fa" },
+      { "name": "Kugelschreiber", "code": "Ks" },
+      { "name": "Tusche", "code": "T" },
+      { "name": "Gouache", "code": "G" },
+      { "name": "Ölfarbe", "code": "OL" },
+      { "name": "Radierung", "code": "R" },
+      { "name": "Digitaldruck", "code": "Dd" },
+      { "name": "Hochdruck", "code": "S" },
+      { "name": "Lithografie", "code": "Lg" }
+    ]
+  }, {
+    "category": "Farben",
+    "heading": null,
+    "kind": "Farbigkeit",
+    "column": 4,
+    "filters": [
+      { "name": "gelb", "code": "y" },
+      { "name": "grün", "code": "g" },
+      { "name": "blau", "code": "c" },
+      { "name": "violett", "code": "v" },
+      { "name": "rot", "code": "m" },
+      { "name": "unbunt", "code": "gr" }
+    ]
+  }, {
+    "category": "Darstellungsform",
+    "heading": null,
+    "kind": "Darstellungsformen",
+    "column": 5,
+    "filters": [
+      { "name": "Collage", "code": "Cb" },
+      { "name": "Frottage", "code": "Fro" },
+      { "name": "space", "code": null },
+      { "name": "Netzstruktur", "code": "Gi" },
+      { "name": "Linienstruktur", "code": "Lst" },
+      { "name": "Linienwirbel", "code": "Lwi" },
+      { "name": "Mosaikstruktur", "code": "Mo" },
+      { "name": "ovale Öffnung", "code": "ovÖ" },
+      { "name": "serielle Collage", "code": "sCo" },
+      { "name": "serielle Muster", "code": "sM" },
+      { "name": "Umrisslinie", "code": "Ul" }
+    ]
+  }, {
+    "category": "Darstellungsart",
+    "heading": null,
+    "kind": "Gegenständlich/Ungegenständlich",
+    "column": 6,
+    "filters": [
+      { "name": "Gegenständlich", "code": "Gs" },
+      { "name": "Ungegenständlich", "code": "U" }
+    ]
+  }, {
+    "category": "Ausrichtung",
+    "heading": null,
+    "kind": "Ausrichtung",
+    "column": 7,
+    "filters": [
+      { "name": "breit", "code": "breit" },
+      { "name": "hoch", "code": "hoch" },
+      { "name": "quadratisch", "code": "quadratisch" }
+    ]
+  }, {
+    "category": "Komposition",
+    "heading": null,
+    "kind": "Komposition",
+    "column": 7,
+    "filters": [
+      { "name": "horizontal", "code": "hK" },
+      { "name": "vertikal", "code": "vK" },
+      { "name": "kreuzförmig", "code": "kK" },
+      { "name": "diagonal", "code": "dK" },
+      { "name": "doppelt diagonal", "code": "ddK" },
+      { "name": "rund, oval", "code": "ROk" },
+      { "name": "Dreieckskomp.", "code": "Drk" },
+      { "name": "Zentralkomp.", "code": "Zk" },
+      { "name": "Randkomp.", "code": "Rk" }
+    ]
   }
 ]
