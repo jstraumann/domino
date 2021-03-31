@@ -90,6 +90,7 @@ body, input {
           display: flex;
           align-items: center;
           padding: $global_padding;
+          padding-top: 0;
 
           .indicator {
             width: 1rem;
