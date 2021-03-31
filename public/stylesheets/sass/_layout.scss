@@ -24,7 +24,7 @@ body, input {
     height: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: space-between;
     overflow-x: scroll;
 
     .img-container {
@@ -87,11 +87,14 @@ body, input {
 
       .content {
         .filter {
+          display: flex;
+          align-items: center;
           padding: $global_padding;
 
           .indicator {
             width: 1rem;
             height: 1rem;
+            margin-right: 1rem;
             background-color: #DDD;
             display: inline-block;
 
