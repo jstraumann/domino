@@ -10,35 +10,45 @@
     </head>
     <body>
 
-        <div class="upper">
-          <% @images.each do |image| %>
-            <img src="https://archiv.juergstraumann.ch/<%= image %>">
+        <div class="selection">
+          <div class="menu">
+            <div class="item">Angebote</div>
+            <div class="item">Speichern</div>
+            <div class="item">Impressum</div>
+          </div>
+        </div>
+
+        <div class="filters">
+          <% Filter.all.each do |filter| %>
+            <div class="category">
+              <div class="head">
+                <h3><%= filter.category %></h3>
+                <% if filter.heading %>
+                  <h5><%= filter.heading %></h5>
+                <% end %>
+              </div>
+              <div class="content">
+                <% filter.filters.each do |f| %>
+                  <div class="filter" data-kind="<%= filter.kind %>"  data-code="<%= f.code %>"><%= f.name %></div>
+                <% end %>
+              </div>
+            </div>
           <% end %>
         </div>
 
-        <div class="lower">
-          <div class="filter">
-            <% Filter.all.each do |filter| %>
-              <div class="category">
-                <div class="head">
-                  <h3><%= filter.category %></h3>
-                  <% if filter.heading %>
-                    <h5><%= filter.heading %></h5>
-                  <% end %>
-                </div>
-                <div class="filters">
-                  <% filter.filters.each do |f| %>
-                    <div class="filter" data-kind="<%= filter.kind %>"  data-code="<%= f.code %>"><%= f.name %></div>
-                  <% end %>
-                </div>
-              </div>
-            <% end %>
+        <div class="hud bottom actions">
+          <div class="line">Auswahl <input type="text" class="hud-count" readonly value="<%= @images.count %>"></div>
+          <div class="line"><input type="submit" class="hud-show" value="Anzeigen"></div>
+          <div class="line"><input type="submit" class="hud-reset" value="Neuauswahl"></div>
+        </div>
+
+        <div class="choice">
+          <div class="hud top">
+            <div class="line"><input type="submit" class="choice-back" value="Zurück"></div>
           </div>
-          <div class="hud">
-            <div class="line">Auswahl <input type="text" class="hud-count" readonly value="<%= @images.count %>"></div>
-            <div class="line"><input type="submit" class="hud-show" value="Anzeigen"></div>
-            <div class="line"><input type="submit" class="hud-cancel" value="Neuauswahl"></div>
-          </div>
+          <% @images.each do |image| %>
+            <img src="https://archiv.juergstraumann.ch/<%= image %>">
+          <% end %>
         </div>
 
         <script src="javascripts/querystring.js"></script>

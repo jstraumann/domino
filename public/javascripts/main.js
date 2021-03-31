@@ -13,3 +13,25 @@ for(const filter of filters) {
     window.location.search = qs.toString();
   });
 }
+
+const displayButton = document.querySelector('.hud-show');
+
+displayButton.addEventListener('click', function() {
+  const choice = document.querySelector('.choice');
+  choice.style.top = '50vh';
+});
+
+const resetButton = document.querySelector('.hud-reset');
+resetButton.addEventListener('click', function() {
+  const response = confirm('Die aktuelle Auswahl wird gelöscht. Fortfahren?');
+  if(response) {
+    window.location.href = '/';
+  }
+})
+
+const choiceClose = document.querySelector('.choice-back');
+
+choiceClose.addEventListener('click', function() {
+  const choice = document.querySelector('.choice');
+  choice.style.top = '100vh';
+});
