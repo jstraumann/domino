@@ -1,0 +1,10 @@
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: domino_development
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+test:
+  url: <%= ENV['DATABASE_URL'] %>

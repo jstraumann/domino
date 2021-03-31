@@ -1,30 +1,51 @@
-require 'sinatra'
+require 'sinatra/base'
+require 'sinatra/reloader'
+require 'sinatra/activerecord'
+
 require 'httparty'
 require 'cgi'
 
-EXCLUDE_FILTERS = ['Selbstbildnisse', 'Capricci', 'Themenkreis Ecuador']
+require './lib/filter'
 
-get '/' do
-  # get('http://www.bildarchiv-js.com/api/images.json?sort=-Jahr&per_page=-1')
-  @filters = filters
-  erb :index
+class Domino < Sinatra::Base
+  enable :sessions
+  register Sinatra::ActiveRecordExtension
+
+  configure :development do
+    register Sinatra::Reloader
+    also_reload 'lib/filter.rb'
+    after_reload do
+      puts 'reloaded'
+    end
+  end
+
+  get '/' do
+    if params[:filter]
+      @images = images(params[:filter])
+    else
+      @images = all_images
+    end
+    erb :index
+  end
 end
 
-get '/images' do
-  data = images(params[:filter])
-  data.to_json
-end
-
-def filters
-  response = get('http://www.bildarchiv-js.com/api/filters/all.json')
+def all_images
+  url = "http://www.bildarchiv-js.com/api/images.json?sort=-Jahr&per_page=2000&page=1"
+  puts url
+  response = get(url)
   data = JSON.parse(response)
-  data.select do |datum|
-    datum['Mode'] == 'Inhalt' && datum['Type'] == 'Motive' && !EXCLUDE_FILTERS.include?(datum['Title'])
+  data[0..200].map do |datum|
+    datum['thumb']
   end
 end
 
 def images(filter)
-  url = "http://www.bildarchiv-js.com/api/images.json?sort=-Jahr&per_page=30&page=1&o_Motiven=\\b#{CGI.escape(filter)}\\b"
+  # http://www.bildarchiv-js.com/api/images?sort=-Jahr&per_page=30&page=1&o_Motiven=\bmF\b&o_Technik=\bAc\b
+  query = filter.map do |term|
+    key, value = term.split("=")
+    "o_#{key}=\\b#{CGI.escape(value)}\\b"
+  end.join('&')
+  url = "http://www.bildarchiv-js.com/api/images.json?sort=-Jahr&per_page=30&page=1&#{query}"
   puts url
   response = get(url)
   data = JSON.parse(response)

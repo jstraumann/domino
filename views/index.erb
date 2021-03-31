@@ -1,135 +1,47 @@
-<style>
-.row {
-  display: flex;
-}
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Domino</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="stylesheets/main.css">
+    </head>
+    <body>
 
-h3 {
-  margin: 0;
-  padding: 6px;
-}
+        <div class="upper">
+          <% @images.each do |image| %>
+            <img src="https://archiv.juergstraumann.ch/<%= image %>">
+          <% end %>
+        </div>
 
-h3, .selection, .filters, .panel, .top {
-  border: 3px solid black;
-}
+        <div class="lower">
+          <div class="filter">
+            <% Filter.all.each do |filter| %>
+              <div class="category">
+                <div class="head">
+                  <h3><%= filter.category %></h3>
+                  <% if filter.heading %>
+                    <h5><%= filter.heading %></h5>
+                  <% end %>
+                </div>
+                <div class="filters">
+                  <% filter.filters.each do |f| %>
+                    <div class="filter" data-kind="<%= filter.kind %>"  data-code="<%= f.code %>"><%= f.name %></div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="hud">
+            <div class="line">Auswahl <input type="text" class="hud-count" readonly value="<%= @images.count %>"></div>
+            <div class="line"><input type="submit" class="hud-show" value="Anzeigen"></div>
+            <div class="line"><input type="submit" class="hud-cancel" value="Neuauswahl"></div>
+          </div>
+        </div>
 
-.selection {
-  padding: 6px;
-}
-
-.filters, .panel, h3, .save {
-  width: 50%;
-}
-
-.filter {
-  padding: 6px;
-  background-color: #CCC;
-  cursor: pointer;
-}
-
-.filter:hover {
-  background-color: #DDD;
-}
-
-img {
-  cursor: pointer;
-}
-
-</style>
-
-<main>
-  <div class="row top">
-    <h3>Auswahl</h3>
-    <button class="save">Speichern</button>
-  </div>
-  <div class="selection"></div>
-  <div class="row">
-    <div class="filters">
-      <% @filters.each do |filter| %>
-        <div class="filter" data-code="<%= filter['Code'] %>"><%= filter['Type'] %> - <%= filter['Title'] %></div>
-      <% end %>
-    </div>
-
-    <div class="panel"></div>
-  </div>
-</main>
-
-<script>
-const key = 'image-list';
-
-const selection = document.querySelector('.selection');
-const panel = document.querySelector('.panel');
-const filters = document.querySelectorAll('.filter');
-const save = document.querySelector('.save');
-
-save.addEventListener('click', function() {
-  const name = prompt("Bitte Namen oder Fantasienamen eingeben");
-  alert("Reihe wurde gespeichert");
-});
-
-updateSelection();
-
-for(const filter of filters) {
-  filter.addEventListener('click', function() {
-    const code = this.getAttribute('data-code');
-    fetch('/images?filter=' + code)
-      .then(response => response.json())
-      .then((data) => {
-        panel.innerHTML = '';
-        for(const datum of data) {
-          const img = document.createElement('img');
-          img.src = `https://archiv.juergstraumann.ch/${datum}`;
-          img.addEventListener('click', function() {
-            console.log(this.src);
-            appendStorage(this.src);
-            updateSelection();
-          });
-          panel.appendChild(img);
-        }
-      });
-    });
-}
-
-function appendStorage(src) {
-  let old = localStorage.getItem(key);
-  if(old) {
-    old = JSON.parse(old);
-  } else {
-    old = [];
-  }
-  old.push(src);
-  localStorage.setItem(key, JSON.stringify(old));
-}
-
-function removeStorage(src) {
-  let old = localStorage.getItem(key);
-  if(old) {
-    old = JSON.parse(old);
-  } else {
-    old = [];
-  }
-  const idx = old.indexOf(src);
-  old.splice(idx, 1);
-  localStorage.setItem(key, JSON.stringify(old));
-}
-
-function updateSelection() {
-  selection.innerHTML = '';
-  let old = localStorage.getItem(key);
-  if(old) {
-    old = JSON.parse(old);
-  } else {
-    old = [];
-  }
-  for(const image of old) {
-    const img = document.createElement('img');
-    img.src = image;
-    img.addEventListener('click', function() {
-      console.log(this.src);
-      removeStorage(this.src);
-      updateSelection();
-    });
-    selection.appendChild(img);
-  }
-}
-
-</script>
+        <script src="javascripts/querystring.js"></script>
+        <script src="javascripts/main.js"></script>
+    </body>
+</html>

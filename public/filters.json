@@ -1,0 +1,37 @@
+[
+  {
+    "category": "Motiv",
+    "heading": "Menschen",
+    "kind": "Paraphrasen",
+    "filters": [
+      { "name": "Einzelne", "code": "Kr5a" },
+      { "name": "Paare", "code": "Kr5b" },
+      { "name": "Gruppen", "code": "Kr5c" },
+      { "name": "Akt", "code": "Kr5d" },
+      { "name": "Köpfe", "code": "Kr5e" }
+    ]
+  }, {
+    "category": "Motiv",
+    "heading": null,
+    "kind": "Motiven",
+    "filters": [
+      { "name": "Mischwesen", "code": "Mw" },
+      { "name": "Tiere", "code": "Tie" },
+      { "name": "Pflanzen", "code": "Pf" },
+      { "name": "Landschaften", "code": "L" }
+    ]
+  }, {
+    "category": "Motiv",
+    "heading": null,
+    "kind": "Motiven",
+    "filters": [
+      { "name": "Architektur", "code": "Ar" },
+      { "name": "Intérieurs", "code": "Ar" },
+      { "name": "Objekte", "code": "Pf" },
+      { "name": "Stillleben", "code": "St" },
+      { "name": "Tische, Sockel", "code": "Ti" },
+      { "name": "Vorhang", "code": "Vo" },
+      { "name": "Black Box", "code": "bb" }
+    ]
+  }
+]
