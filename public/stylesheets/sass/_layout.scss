@@ -14,19 +14,34 @@ body, input {
 }
 
 .selection, .filters {
-  height: 50vh;
   box-sizing: border-box;
   overflow: hidden;
 }
 
 .selection {
-  .image-scroll-right {
+  height: $upper_height;
+}
+
+.filters {
+  height: $lower_height;
+}
+
+.selection {
+  .image-scroll {
+    color: $off_black;
     position: absolute;
-    top: 25%;
-    right: 0;
-    font-size: 5rem;
+    top: 16vh;
+    font-size: 8vh;
     cursor: pointer;
-    background-color: #DDD;
+    text-shadow: 5px 5px 10px $off_white;
+
+    &.scroll-left {
+      left: 0;
+    }
+
+    &.scroll-right {
+      right: 0;
+    }
   }
 
   .images {
@@ -82,7 +97,7 @@ body, input {
 
   .column {
     width: 14.28%;
-    padding: $global_padding;
+    padding-left: $global_padding;
     box-sizing: border-box;
 
     .category {
@@ -121,7 +136,7 @@ body, input {
 
 .choice {
   position: absolute;
-  height: 100vh;
+  height: $lower_height;
   width: 100%;
   top: 100vh;
   background-color: $off_white;
