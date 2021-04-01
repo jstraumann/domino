@@ -17,7 +17,22 @@
             <div class="item">Impressum</div>
           </div>
 
-          <div class="images"></div>
+          <div class="images">
+          </div>
+
+          <script id="image-template" type="x-tmpl-mustache">
+            <div class="img-container {{image.Grösse}} {{image.Ausrichtung}}" data-info="{{info}}">
+              <img src="https://archiv.juergstraumann.ch/{{image.path}}">
+              <div class="overlay">
+                <div>
+                  <span class="title">{{image.Titel}}</span>
+                  <br>
+                  {{image.Jahr}}
+                </div>
+                <div class="remove-preview"></div>
+              </div>
+            </div>
+          </script>
 
           <div class="image-scroll scroll-left">&laquo;</div>
           <div class="image-scroll scroll-right">&raquo;</div>
@@ -28,12 +43,10 @@
             <div class="column">
               <% @filters.select{ |f| f.column == col }.each do |filter| %>
                 <div class="category">
-                  <div class="head">
-                    <h3><%= filter.category %></h3>
-                    <% if filter.heading %>
-                      <h5><%= filter.heading %></h5>
-                    <% end %>
-                  </div>
+                  <h3><%= filter.category %></h3>
+                  <% if filter.heading %>
+                    <h5><%= filter.heading %></h5>
+                  <% end %>
                   <div class="content">
                     <% filter.filters.each do |f| %>
                       <% if f.code %>
@@ -59,7 +72,7 @@
         </div>
 
         <div class="choice">
-          <div class="hud top">
+          <div class="hud top goback">
             <div class="line"><input type="submit" class="choice-back" value="Zurück"></div>
           </div>
           <div class="images">
@@ -69,6 +82,7 @@
           </div>
         </div>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
         <script src="javascripts/smoothscroll.js"></script>
         <script src="javascripts/querystring.js"></script>
         <script src="javascripts/selection.js"></script>

@@ -1,6 +1,15 @@
-/**** FILTER CLICK HANDLER *****/
-
+const scrollLeftButton = document.querySelector('.image-scroll.scroll-left');
+const scrollRightButton = document.querySelector('.image-scroll.scroll-right');
+const selection = document.querySelector('.images');
 const filters = document.querySelectorAll('.filter');
+const displayButton = document.querySelector('.hud-show');
+const resetButton = document.querySelector('.hud-reset');
+const choiceClose = document.querySelector('.choice-back');
+const choices = document.querySelectorAll('.choice img');
+const selectionContainer = document.querySelector('.selection .images');
+
+
+/**** FILTER CLICK HANDLER *****/
 
 for(const filter of filters) {
   filter.addEventListener('click', function(e) {
@@ -24,8 +33,6 @@ for(const filter of filters) {
 
 /**** SHOW FILTERED IMAGES *****/
 
-const displayButton = document.querySelector('.hud-show');
-
 displayButton.addEventListener('click', function() {
   const choice = document.querySelector('.choice');
   choice.style.top = document.querySelector('.selection').clientHeight + 'px';
@@ -33,14 +40,11 @@ displayButton.addEventListener('click', function() {
 
 /**** RESET FILTER *****/
 
-const resetButton = document.querySelector('.hud-reset');
 resetButton.addEventListener('click', function() {
   window.location.href = '/';
 });
 
 /**** CLOSE FILTERED IMAGES *****/
-
-const choiceClose = document.querySelector('.choice-back');
 
 choiceClose.addEventListener('click', function() {
   const choice = document.querySelector('.choice');
@@ -50,9 +54,6 @@ choiceClose.addEventListener('click', function() {
 /**** LOAD CHOICES *****/
 
 Selection.init();
-
-const choices = document.querySelectorAll('.choice img');
-const selectionContainer = document.querySelector('.selection .images');
 
 refreshSelection();
 
@@ -72,40 +73,51 @@ function refreshSelection() {
   selectionContainer.innerHTML = '';
   const images = Selection.load();
   for(const image of images) {
-    const container = document.createElement('div');
-    container.classList.add('img-container');
-    container.classList.add(image.Grösse);
-    container.classList.add(image.Ausrichtung);
 
-    const img = document.createElement('img');
-    img.src = `https://archiv.juergstraumann.ch/${image.path}`;
-    container.appendChild(img);
+    const template = document.getElementById('image-template').innerHTML;
+    const previewString = Mustache.render(template, { image: image, info: JSON.stringify(image) });
+    const preview = htmlToElement(previewString);
+    selectionContainer.appendChild(preview);
 
-    const overlay = document.createElement('div');
-    overlay.classList.add('overlay');
-    overlay.innerHTML = `<b>${image.Titel}</b><br>${image.Jahr}`;
-    container.appendChild(overlay);
-
-    selectionContainer.appendChild(container);
-
-    container.addEventListener('click', function() {
+    preview.addEventListener('click', function() {
       const overlay = this.querySelector('.overlay');
-      if(overlay.style.opacity == 0.8) {
-        overlay.style.opacity = 0;
+      if(overlay.style.display == 'flex') {
+        overlay.style.display = 'none';
       } else {
-        overlay.style.opacity = 0.8;
+        overlay.style.display = 'flex';
       }
     });
+
+    preview.querySelector('.remove-preview').addEventListener('click', function() {
+      const current = Selection.load();
+      const infoStr = this.parentNode.parentNode.getAttribute('data-info');
+      const info = JSON.parse(infoStr);
+      const match = current.find(function(img) { return img.path == info.path });
+      const idx = current.indexOf(match);
+      current.splice(idx, 1);
+      Selection.store(current);
+      refreshSelection();
+    });
   }
+
+  showHideButtons();
+}
+
+function htmlToElement(html) {
+  const template = document.createElement('template');
+  html = html.trim(); // Never return a text node of whitespace as the result
+  template.innerHTML = html;
+  return template.content.firstChild;
 }
 
 /**** IMAGE SELECTION SCROLLER *****/
 
-const scrollLeftButton = document.querySelector('.image-scroll.scroll-left');
-const scrollRightButton = document.querySelector('.image-scroll.scroll-right');
-const selection = document.querySelector('.images');
+selection.addEventListener('scroll', showHideButtons);
+window.addEventListener('resize', showHideButtons);
 
-selection.addEventListener('scroll', function() {
+showHideButtons();
+
+function showHideButtons() {
   if(selection.scrollLeft <= 0) {
     scrollLeftButton.style.display = 'none';
   } else {
@@ -117,7 +129,7 @@ selection.addEventListener('scroll', function() {
   } else {
     scrollRightButton.style.display = 'block';
   }
-});
+}
 
 scrollRightButton.addEventListener('click', function() {
   selection.scroll({
@@ -134,4 +146,3 @@ scrollLeftButton.addEventListener('click', function() {
     behavior: 'smooth'
   });
 });
-

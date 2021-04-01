@@ -24,10 +24,9 @@
   position: absolute;
   background-color: $hud_background_color;
   color: $hud_font_color;
-  width: $hud_width;
-  left: 50% - ($hud_width/2);
   padding: $hud_padding;
   font-size: $hud_font_size;
+  box-sizing: border-box;
 
   &.top {
     top: 0;

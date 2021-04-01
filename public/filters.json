@@ -28,7 +28,11 @@
       { "name": "Stillleben", "code": "St" },
       { "name": "Tische, Sockel", "code": "Ti" },
       { "name": "Vorhang", "code": "Vo" },
-      { "name": "Black Box", "code": "bb" }
+      { "name": "Black Box", "code": "bb" },
+      { "name": "space", "code": null },
+      { "name": "Bild im Bild", "code": "BiB" },
+      { "name": "leeres Bild", "code": "IL" },
+      { "name": "Schriftzeichen", "code": "Sch" }
     ]
   }, {
     "category": "Technik",
