@@ -9,14 +9,8 @@
       { "name": "Paare", "code": "Kr5b" },
       { "name": "Gruppen", "code": "Kr5c" },
       { "name": "Akt", "code": "Kr5d" },
-      { "name": "Köpfe", "code": "Kr5e" }
-    ]
-  }, {
-    "category": "Motiv",
-    "heading": null,
-    "kind": "Motiven",
-    "column": 1,
-    "filters": [
+      { "name": "Köpfe", "code": "Kr5e" },
+      { "name": "space", "code": null },
       { "name": "Mischwesen", "code": "Mw" },
       { "name": "Tiere", "code": "Tie" },
       { "name": "Pflanzen", "code": "Pf" },
@@ -98,7 +92,7 @@
     "category": "Ausrichtung",
     "heading": null,
     "kind": "Ausrichtung",
-    "column": 7,
+    "column": 6,
     "filters": [
       { "name": "breit", "code": "breit" },
       { "name": "hoch", "code": "hoch" },
