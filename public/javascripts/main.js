@@ -28,7 +28,7 @@ const displayButton = document.querySelector('.hud-show');
 
 displayButton.addEventListener('click', function() {
   const choice = document.querySelector('.choice');
-  choice.style.top = '50vh';
+  choice.style.top = document.querySelector('.selection').clientHeight + 'px';
 });
 
 /**** RESET FILTER *****/
@@ -101,13 +101,37 @@ function refreshSelection() {
 
 /**** IMAGE SELECTION SCROLLER *****/
 
-const scrollRightButton = document.querySelector('.image-scroll-right');
+const scrollLeftButton = document.querySelector('.image-scroll.scroll-left');
+const scrollRightButton = document.querySelector('.image-scroll.scroll-right');
+const selection = document.querySelector('.images');
+
+selection.addEventListener('scroll', function() {
+  if(selection.scrollLeft <= 0) {
+    scrollLeftButton.style.display = 'none';
+  } else {
+    scrollLeftButton.style.display = 'block';
+  }
+
+  if(selection.scrollLeft + selection.clientWidth >= selection.scrollWidth) {
+    scrollRightButton.style.display = 'none';
+  } else {
+    scrollRightButton.style.display = 'block';
+  }
+});
 
 scrollRightButton.addEventListener('click', function() {
-  const selection = document.querySelector('.images');
   selection.scroll({
     top: 0,
     left: selection.scrollLeft + 500,
     behavior: 'smooth'
   });
 });
+
+scrollLeftButton.addEventListener('click', function() {
+  selection.scroll({
+    top: 0,
+    left: selection.scrollLeft - 500,
+    behavior: 'smooth'
+  });
+});
+
