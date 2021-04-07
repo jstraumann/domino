@@ -7,6 +7,7 @@ const resetButton = document.querySelector('.hud-reset');
 const choiceClose = document.querySelector('.choice-back');
 const choices = document.querySelectorAll('.choice img');
 const selectionContainer = document.querySelector('.selection .images');
+const saveButton = document.querySelector('.save');
 
 
 /**** FILTER CLICK HANDLER *****/
@@ -145,4 +146,26 @@ scrollLeftButton.addEventListener('click', function() {
     left: selection.scrollLeft - 500,
     behavior: 'smooth'
   });
+});
+
+/**** MENU ****/
+
+saveButton.addEventListener('click', function() {
+  const prompt = new gui.prompt('Speichern', 'Bitte geben Sie der Kollektion einen Namen', {
+    inputs: [{
+      label: 'Name', type: 'text', name: 'name'
+    }],
+    buttons: [{
+      label: 'Abbrechen', action: function() {
+        this.close();
+      }
+    }, {
+      label: 'Speichern', action: function() {
+        alert(JSON.stringify(this.data()));
+        this.close();
+      }
+    }]
+  });
+
+  prompt.open();
 });

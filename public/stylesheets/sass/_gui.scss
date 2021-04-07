@@ -1,0 +1,30 @@
+.prompt {
+  position: absolute;
+  width: 50vw;
+  height: 30vh;
+  left: 25vw;
+  top: 35vh;
+  background-color: white;
+  box-shadow: 0 0 4px black;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .head, .foot {
+    background-color: #333;
+    color: white;
+  }
+
+  .head h3, .content, .foot {
+    padding: 12px;
+  }
+
+  .foot {
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin-left: 12px;
+    }
+  }
+}
