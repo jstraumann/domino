@@ -151,7 +151,7 @@ scrollLeftButton.addEventListener('click', function() {
 /**** MENU ****/
 
 saveButton.addEventListener('click', function() {
-  const prompt = new gui.prompt('Speichern', 'Bitte geben Sie der Kollektion einen Namen', {
+  const prompt = new badgui.prompt('Speichern', 'Bitte geben Sie der Kollektion einen Namen', {
     inputs: [{
       label: 'Name', type: 'text', name: 'name'
     }],
