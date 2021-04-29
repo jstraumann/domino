@@ -25,6 +25,13 @@
 
     button {
       margin-left: 12px;
+      border: none;
+      padding: 6px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: $hud_hover_background;
+      }
     }
   }
 }

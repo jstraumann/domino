@@ -150,10 +150,17 @@ scrollLeftButton.addEventListener('click', function() {
 
 /**** MENU ****/
 
+KioskBoard.Init({
+  keysArrayOfObjects: [ { "0": "Q", "1": "W", "2": "E", "3": "R", "4": "T", "5": "Z", "6": "U", "7": "I", "8": "O", "9": "P", "10": "Ü" }, { "0": "A", "1": "S", "2": "D", "3": "F", "4": "G", "5": "H", "6": "J", "7": "K", "8": "L", "9": "Ö", "10": "Ä" }, { "0": "Y", "1": "X", "2": "C", "3": "V", "4": "B", "5": "N", "6": "M" } ],
+  allowRealKeyboard: true,
+  capsLockActive: false,
+  theme: 'flat'
+});
+
 saveButton.addEventListener('click', function() {
   const prompt = new badgui.prompt('Speichern', 'Bitte geben Sie der Kollektion einen Namen', {
     inputs: [{
-      label: 'Name', type: 'text', name: 'name'
+      label: 'Name', type: 'text', name: 'name', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false
     }],
     buttons: [{
       label: 'Abbrechen', action: function() {
@@ -168,4 +175,6 @@ saveButton.addEventListener('click', function() {
   });
 
   prompt.open();
+
+  KioskBoard.Run('[data-kioskboard-type=keyboard]');
 });
