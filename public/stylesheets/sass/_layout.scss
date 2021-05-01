@@ -7,6 +7,7 @@
 
 body {
   overflow: hidden;
+  background-color: $body_background;
 }
 
 body, input {
@@ -53,11 +54,17 @@ body, input {
 
     .img-container {
       position: relative;
-      margin-left: $global_padding * 2;
+      margin-left: $global_padding * 4;
 
       &:last-child {
-        margin-right: $global_padding * 2;
+        margin-right: $global_padding * 4;
       }
+
+      &.klein + &.klein { margin-left: $global_padding * 2; }
+      &.mittel + &.klein, &.klein + &.mittel { margin-left: $global_padding * 3; }
+      &.mittel + &.mittel { margin-left: $global_padding * 4; }
+      &.mittel + &.gross, &.gross + &.mittel { margin-left: $global_padding * 5; }
+      &.gross + &.gross { margin-left: $global_padding * 6; }
 
       &.quadratisch.mittel { height: $gallery_height * 1; }
       &.quadratisch.klein { height: $gallery_height * 0.6; }
@@ -108,9 +115,10 @@ body, input {
 
 .filters {
   display: flex;
+  margin-left: $filter_col_marginleft;
 
   .column {
-    width: calc(100vw / 7);
+    width: $filter_col_width;
     box-sizing: border-box;
     padding-top: $global_padding;
 

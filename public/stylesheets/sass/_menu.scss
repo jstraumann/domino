@@ -27,6 +27,7 @@
   padding: $hud_padding;
   font-size: $hud_font_size;
   box-sizing: border-box;
+  max-width: $hud_width;
 
   &.top {
     top: 0;
