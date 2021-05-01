@@ -7,6 +7,8 @@ $dark_grey: darken($middle_grey, 20%);
 $upper_height: 53vh;
 $lower_height: 47vh;
 
+$button_background_color: $middle_grey;
+
 $global_font_size: 1rem;
 $global_padding: 24px;
 
@@ -19,7 +21,7 @@ $hud_padding: $global_padding;
 $hud_width: 12.5vw;
 
 $menu_width: 33.33%;
-$menu_font_size: $global_font_size;
+$menu_font_size: $global_font_size * 1.2;
 $menu_padding: $global_padding * 0.5;
 $menu_background_color: $off_white;
 $menu_font_color: $off_black;

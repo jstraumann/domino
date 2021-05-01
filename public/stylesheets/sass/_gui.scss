@@ -1,22 +1,58 @@
-.prompt {
+button {
+  border: none;
+  padding: $global_padding / 2;
+  padding-left: 24px;
+  padding-right: 24px;
+  cursor: pointer;
+  background-color: $button_background_color;
+
+  &:hover {
+    background-color: darken($button_background_color, 20%);
+  }
+}
+
+.alert, .prompt {
   position: absolute;
   width: 50vw;
-  height: 30vh;
   left: 25vw;
   top: 35vh;
   background-color: white;
-  box-shadow: 0 0 4px black;
+  box-shadow: 5px 5px 10px #DDD;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 6px;
 
-  .head, .foot {
-    background-color: #333;
-    color: white;
+  h3 {
+    font-size: 2rem;
+    font-weight: 400;
   }
 
-  .head h3, .content, .foot {
-    padding: 12px;
+  .foot {
+    background-color: #EEE;
+    color: white;
+
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+  }
+
+  .head h3, .content {
+    padding-top: $global_padding * 2;
+    padding-left: $global_padding * 2;
+    padding-right: $global_padding * 2;
+  }
+
+  .content {
+    line-height: 1.7rem;
+    padding-bottom: $global_padding * 2;
+  }
+
+  .foot {
+    padding: $global_padding;
+  }
+
+  .content, .foot button {
+    font-size: $global_font_size * 1.2;
   }
 
   .foot {
@@ -25,12 +61,36 @@
 
     button {
       margin-left: 12px;
-      border: none;
-      padding: 6px;
-      cursor: pointer;
+    }
+  }
+}
 
-      &:hover {
-        background-color: $hud_hover_background;
+.alert {
+  width: 70vw;
+  height: inherit;
+  left: 15vw;
+  top: 20vh;
+
+  .offers {
+    display: flex;
+    justify-content: space-between;
+
+    .offer {
+      width: 12%;
+
+      p {
+        text-align: center;
+        font-size: 1.5rem;
+        margin-bottom: $global_padding;
+      }
+
+      img {
+        margin-bottom: $global_padding;
+      }
+
+      button {
+        margin-top: $global_padding / 2;
+        width: 100%;
       }
     }
   }

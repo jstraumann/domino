@@ -1,6 +1,6 @@
 @import '_settings';
 
-.menu {
+.menu, .menu-container {
   position: absolute;
   background-color: $menu_background_color;
   color: $menu_font_color;
@@ -19,6 +19,14 @@
   }
 }
 
+.menu-container {
+  z-index: 10;
+
+  .menu-item {
+    padding-top: $global_padding/4;
+    padding-bottom: $global_padding/4;
+  }
+}
 
 .hud {
   position: absolute;
@@ -63,6 +71,7 @@
     &[type=submit] {
       width: 100%;
       cursor: pointer;
+      background-color: $button_background_color;
 
       &:hover {
         background-color: $hud_hover_background;

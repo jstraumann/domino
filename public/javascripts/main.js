@@ -7,7 +7,9 @@ const resetButton = document.querySelector('.hud-reset');
 const choiceClose = document.querySelector('.choice-back');
 const choices = document.querySelectorAll('.choice img');
 const selectionContainer = document.querySelector('.selection .images');
+const offersButton = document.querySelector('.offers');
 const saveButton = document.querySelector('.save');
+const imprintButton = document.querySelector('.imprint');
 
 
 /**** FILTER CLICK HANDLER *****/
@@ -177,4 +179,37 @@ saveButton.addEventListener('click', function() {
   prompt.open();
 
   KioskBoard.Run('[data-kioskboard-type=keyboard]');
+});
+
+const offerText = document.querySelector('.fragements > .offers').outerHTML;
+
+offersButton.addEventListener('click', function() {
+  const alert = new badgui.alert('Angebote', offerText, {
+    buttons: [{
+      label: 'Schliessen', action: function() {
+        this.close();
+      }
+    }]
+  });
+  alert.open();
+
+  alert.element().querySelector('.offer .offer-info').addEventListener('click', function() {
+    const name = this.parentNode.getAttribute('data-name');
+    const infoText = document.querySelector('.fragements > .offers-' + name.toLowerCase().replace(' ', '')).innerHTML
+    const a2 = new badgui.alert(name, infoText, {
+      buttons: [{
+        label: 'Schliessen', action: function() {
+          this.close();
+        }
+      }]
+    });
+    a2.open();
+  });
+
+  alert.element().querySelector('.offer .offer-start').addEventListener('click', function() {
+    const name = this.parentNode.getAttribute('data-name').toLowerCase().replace(' ', '');
+    if(name == 'domino') {
+      window.location.reload();
+    }
+  });
 });

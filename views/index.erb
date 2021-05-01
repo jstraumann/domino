@@ -13,10 +13,32 @@
 
         <div class="selection">
           <div class="menu">
-            <div class="item">Angebote</div>
+            <div class="item offers">Angebote</div>
             <div class="item save">Speichern</div>
-            <div class="item">Impressum</div>
+            <div class="item imprint">Impressum</div>
           </div>
+
+          <!--<div class="menu-container">
+            <div class="col">
+              <div class="menu-item">Bild an Bild</div>
+              <div class="menu-item">Domino</div>
+              <div class="menu-item">per Zufall</div>
+              <div class="menu-item">zu Gast</div>
+              <div class="menu-item">Website JS</div>
+            </div>
+            <div class="col">
+              <div class="menu-item">BenutzerInnenname</div>
+              <div class="menu-item">Titel, Kommentar</div>
+              <div class="menu-item">Archiv BesucherInnen</div>
+              <div class="menu-item">Archiv JS</div>
+            </div>
+            <div class="col">
+              <div class="menu-item">Konzept</div>
+              <div class="menu-item">Umsetzung</div>
+              <div class="menu-item">SponsorInnen</div>
+              <div class="menu-item">Kontakt</div>
+            </div>
+          </div>-->
 
           <div class="images">
           </div>
@@ -80,6 +102,40 @@
             <% @images.each do |image| %>
               <img src="https://archiv.juergstraumann.ch/<%= image['thumb'] %>" data-info="<%= CGI.escapeHTML image.to_json %>">
             <% end %>
+          </div>
+        </div>
+
+        <div class="fragements">
+          <div class="offers">
+            <div class="offer" data-name="Domino">
+              <p>Domino</p>
+              <img src="domino.svg">
+              <button class="offer-info">Infos</button>
+              <button class="offer-start">Starten</button>
+            </div>
+            <div class="offer" data-name="Kuckucksei">
+              <p>Kuckucksei</p>
+              <img src="bird.svg">
+              <button class="offer-info">Infos</button>
+              <button class="offer-start">Starten</button>
+            </div>
+            <div class="offer" data-name="Per Zufall">
+              <p>Per Zufall</p>
+              <img src="shuffle.svg">
+              <button class="offer-info">Infos</button>
+              <button class="offer-start">Starten</button>
+            </div>
+          </div>
+          <div class="offers-domino">
+            <ul>
+              <li>Klicke auf eine Kategorie deiner Wahl. Um die Auswahl einzugrenzen, kannst du weitere Kategorien aus anderen Rubriken anwählen. Die Anzahl Resultate wird im Feld „Ausgewählt“ angezeigt.</li>
+              <li>Klicke auf „Anzeigen“, um die entsprechenden Bilder zu sehen.</li>
+              <li>Durch das Anklicken eines bestimmten Bildes erscheint dieses in der Bildreihe oben. Durch erneutes Anklicken kannst du dieses Bild allenfalls auch wieder löschen.</li>
+              <li>Zur Fortsetzung auf „Neuauswahl“ klicken. Wie beim Legespiel Domino müssen für das richtige Aneinanderfügen der Bilder mindestens zwei Kriterien übereinstimmen. Je abwechslungsreicher und länger die Reihe, desto besser!</li>
+              <li>Sobald du die Aktion beenden möchtest, kannst du deine Auswahl unter deinem wirklichen oder einem Fantasienamen abspeichern.</li>
+              <li>Gerne kannst du deiner Reihe einen Titel geben und /oder einen Kommentar beifügen.</li>
+              <li>Du kannst dir auch die Reihen anderer Benutzer*innen anschauen.</li>
+              </ul>
           </div>
         </div>
 
