@@ -181,7 +181,20 @@ saveButton.addEventListener('click', function() {
   KioskBoard.Run('[data-kioskboard-type=keyboard]');
 });
 
-const offerText = document.querySelector('.fragements > .offers').outerHTML;
+imprintButton.addEventListener('click', function() {
+  const alert = new badgui.alert('Impressum', document.querySelector('.fragments > .imprint').outerHTML, {
+    buttons: [{
+      label: 'Schliessen', action: function() {
+        this.close();
+      }
+    }]
+  });
+  alert.open();
+})
+
+const windowStack = [];
+
+const offerText = document.querySelector('.fragments > .offers').outerHTML;
 
 offersButton.addEventListener('click', function() {
   const alert = new badgui.alert('Angebote', offerText, {
@@ -193,17 +206,26 @@ offersButton.addEventListener('click', function() {
   });
   alert.open();
 
-  alert.element().querySelector('.offer .offer-info').addEventListener('click', function() {
-    const name = this.parentNode.getAttribute('data-name');
-    const infoText = document.querySelector('.fragements > .offers-' + name.toLowerCase().replace(' ', '')).innerHTML
-    const a2 = new badgui.alert(name, infoText, {
-      buttons: [{
-        label: 'Schliessen', action: function() {
-          this.close();
-        }
-      }]
+  const infoButtons = alert.element().querySelectorAll('.offer .offer-info');
+  infoButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const name = this.parentNode.getAttribute('data-name');
+      const infoText = document.querySelector('.fragments > .offers-' + name.toLowerCase().replace(' ', '')).innerHTML;
+      const a2 = new badgui.alert(name, infoText, {
+        buttons: [{
+          label: 'Schliessen', action: function() {
+            this.close();
+            if(windowStack.length > 0) {
+              const prev = windowStack.pop();
+              prev.open();
+            }
+          }
+        }]
+      });
+      a2.open();
+      windowStack.push(alert);
+      alert.close();
     });
-    a2.open();
   });
 
   alert.element().querySelector('.offer .offer-start').addEventListener('click', function() {
