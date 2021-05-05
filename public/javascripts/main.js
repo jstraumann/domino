@@ -160,18 +160,24 @@ KioskBoard.Init({
 });
 
 saveButton.addEventListener('click', function() {
-  const prompt = new badgui.prompt('Speichern', 'Bitte geben Sie der Kollektion einen Namen', {
-    inputs: [{
-      label: 'Name', type: 'text', name: 'name', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false
-    }],
+  const prompt = new badgui.prompt('Speichern', 'Hier kannst du deine Bilderreihe oder deinen Kommentar unter deinem wirklichen oder einem Fantasienamen abspeichern. Gerne kannst du deine Reihe mit einem Titel versehen und/oder einen Kommentar abgeben.', {
+    inputs: [
+      { label: 'Titel', type: 'text', name: 'title', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false },
+      { label: 'Benutzer*innen-Name', type: 'text', name: 'username', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false }
+    ],
     buttons: [{
       label: 'Abbrechen', action: function() {
         this.close();
       }
     }, {
       label: 'Speichern', action: function() {
-        alert(JSON.stringify(this.data()));
-        this.close();
+        const data = this.data();
+        data.images = JSON.parse(localStorage.getItem('selection'));
+        const that = this;
+        post('/collections', data, function() {
+          that.close();
+          alert('Ihre Sammlung wurde gespeichert.');
+        });
       }
     }]
   });
@@ -235,3 +241,15 @@ offersButton.addEventListener('click', function() {
     }
   });
 });
+
+function post(url, data, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      callback(xhr.responseText);
+    }
+  };
+  xhr.send(JSON.stringify(data));
+}

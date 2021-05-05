@@ -45,6 +45,20 @@ button {
   .content {
     line-height: 1.7rem;
     padding-bottom: $global_padding * 2;
+
+    label {
+      display: block;
+      margin-top: 24px;
+    }
+
+    input[type=text] {
+      width: 50%;
+      padding: 12px;
+      margin-top: 6px;
+      border: none;
+      background-color: $off_white;
+      border-bottom: 3px solid $middle_grey;
+    }
   }
 
   .foot {

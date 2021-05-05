@@ -1,0 +1,18 @@
+<style>img { max-height: 200px; } .info { font-size: 2rem; }</style>
+
+<% @collections.each do |c| %>
+  <div class="collection">
+    <div class="info">
+      <%= c.title %>
+      <small><%= c.username %></small>
+      (<%= c.created_at.strftime('%d.%m.%Y') %>)
+    </div>
+    <div class="images">
+      <% if c.images %>
+        <% c.images.each do |i| %>
+          <img src="https://archiv.juergstraumann.ch/<%= i['path'] %>">
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

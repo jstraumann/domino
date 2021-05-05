@@ -27,6 +27,12 @@ body, input {
   height: $lower_height;
 }
 
+input[type=text] {
+  &:focus {
+    border: 2px solid blue;
+  }
+}
+
 .selection {
   .image-scroll {
     color: $off_black;
