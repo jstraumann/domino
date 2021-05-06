@@ -44,8 +44,10 @@
           </div>
 
           <script id="image-template" type="x-tmpl-mustache">
-            <div class="img-container {{image.Grösse}} {{image.Ausrichtung}}" data-info="{{info}}">
-              <img src="https://archiv.juergstraumann.ch/{{image.path}}">
+            <div class="img-container {{image.Grösse}} {{image.Ausrichtung}}" data-info="{{info}}"
+            style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+            unselectable="on" onselectstart="return false;" onmousedown="return false;">
+              <img src="https://archiv.juergstraumann.ch/{{image.path}}" draggable="false">
               <div class="overlay">
                 <div>
                   <span class="title">{{image.Titel}}</span>
@@ -100,7 +102,9 @@
           </div>
           <div class="images">
             <% @images.each do |image| %>
-              <img src="https://archiv.juergstraumann.ch/<%= image['thumb'] %>" data-info="<%= CGI.escapeHTML image.to_json %>">
+              <img src="https://archiv.juergstraumann.ch/<%= image['thumb'] %>" data-info="<%= CGI.escapeHTML image.to_json %>"
+                style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+                unselectable="on" onselectstart="return false;" onmousedown="return false;">
             <% end %>
           </div>
         </div>
