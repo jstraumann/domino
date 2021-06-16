@@ -10,6 +10,7 @@ const selectionContainer = document.querySelector('.selection .images');
 const offersButton = document.querySelector('.offers');
 const saveButton = document.querySelector('.save');
 const imprintButton = document.querySelector('.imprint');
+const collectionButton = document.querySelector('.collections');
 
 
 /**** FILTER CLICK HANDLER *****/
@@ -176,7 +177,8 @@ saveButton.addEventListener('click', function() {
         const that = this;
         post('/collections', data, function() {
           that.close();
-          alert('Ihre Sammlung wurde gespeichert.');
+          window.document.body.click();
+          window.location.href = '/collections';
         });
       }
     }]
@@ -240,6 +242,10 @@ offersButton.addEventListener('click', function() {
       window.location.reload();
     }
   });
+});
+
+collectionButton.addEventListener('click', function() {
+
 });
 
 function post(url, data, callback) {

@@ -16,6 +16,10 @@
 
   .item {
     cursor: pointer;
+    a {
+      text-decoration: none;
+      color: $off_black;
+    }
   }
 }
 

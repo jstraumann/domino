@@ -36,7 +36,6 @@ class Domino < Sinatra::Base
   end
 
   get '/collections' do
-    @collections = Collection.order(created_at: :desc)
     erb :collections
   end
 end

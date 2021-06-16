@@ -189,7 +189,6 @@ input[type=text] {
   top: 100vh;
   background-color: $off_white;
   transition: top 1s ease 0s;
-  overflow-y: scroll;
 
   .goback.hud {
     position: sticky;
@@ -202,6 +201,9 @@ input[type=text] {
     grid-template-columns: repeat(9, 1fr);
     grid-gap: $global_padding;
     margin: $global_padding;
+    max-height: 35vh;
+    overflow-y: scroll;
+    padding-right: 24px;
 
     img {
       width: 100%;
@@ -222,5 +224,30 @@ input[type=text] {
 
   p {
     margin-bottom: 36px;
+  }
+}
+
+body[data-page=collections] {
+  .collections {
+    margin-top: 10vh;
+    padding: 10vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+
+    .collection {
+      padding: 48px;
+      border: 1px solid black;
+    }
+  }
+
+  .selection {
+    margin-top: 10vh;
+    padding: 10vh;
+
+    .info {
+      font-size: 1.3rem;
+    }
   }
 }
