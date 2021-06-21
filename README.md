@@ -54,3 +54,6 @@ following setup:
 ```
 
 * Reboot the Raspberry
+* Click on the Menu -> `Preferences` -> `Raspberry Pi Configuration` ->
+  `Performance` -> `Overlay file system` -> `Configure...` and enable `overlayFS`
+  and the `read-only root` options.
