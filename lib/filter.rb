@@ -11,7 +11,7 @@ class Filter
   def self.build(filter_param)
     filter_param.map do |term|
       key, value = term.split("=")
-      "o_#{key}=\\b#{CGI.escape(value)}\\b"
+      "o_#{CGI.escape(key)}=\\b#{CGI.escape(value)}\\b"
     end.join('&')
   end
 
