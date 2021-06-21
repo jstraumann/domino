@@ -11,7 +11,11 @@
   </head>
   <body data-page="collections">
     <div class="menu">
-      <div class="item offers"><a href="/">&larr; zurück zum Domino</a></div>
+      <% if params[:id].blank? %>
+        <div class="item offers"><a href="/">&larr; zurück zum Domino</a></div>
+      <% else %>
+        <div class="item offers"><a href="/collections">&larr; zurück zur Übersicht</a></div>
+      <% end %>
     </div>
     <% if !params[:id] %>
       <div class="collections">

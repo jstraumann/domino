@@ -1,5 +1,6 @@
 require 'json'
 require 'cgi'
+require 'open-uri'
 
 class Filter
   def self.all
@@ -12,5 +13,11 @@ class Filter
       key, value = term.split("=")
       "o_#{key}=\\b#{CGI.escape(value)}\\b"
     end.join('&')
+  end
+
+  def self.codes
+    uri = URI.parse('https://bildarchiv-js.ch/api/filters/all.json')
+    content = uri.read
+    JSON.parse(content, object_class: OpenStruct)
   end
 end
