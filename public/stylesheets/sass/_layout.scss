@@ -72,17 +72,17 @@ input[type=text] {
       &.mittel + &.gross, &.gross + &.mittel { margin-left: $global_padding * 5; }
       &.gross + &.gross { margin-left: $global_padding * 6; }
 
-      &.quadratisch.mittel { height: $gallery_height * 1.5; }
+      &.quadratisch.mittel { height: $gallery_height * 1.3; }
       &.quadratisch.klein { height: $gallery_height * 1; }
-      &.quadratisch.gross { height: $gallery_height * 2; }
+      &.quadratisch.gross { height: $gallery_height * 1.6; }
 
-      &.hoch.mittel { height: $gallery_height * 2; }
-      &.hoch.klein { height: $gallery_height * 1.5; }
-      &.hoch.gross { height: $gallery_height * 2.3; }
+      &.hoch.mittel { height: $gallery_height * 1.6; }
+      &.hoch.klein { height: $gallery_height * 1.3; }
+      &.hoch.gross { height: $gallery_height * 2; }
 
-      &.breit.mittel { height: $gallery_height * 1.5; }
+      &.breit.mittel { height: $gallery_height * 1.3; }
       &.breit.klein { height: $gallery_height * 1; }
-      &.breit.gross { height: $gallery_height * 2; }
+      &.breit.gross { height: $gallery_height * 1.6; }
 
       img {
         height: 100%;
