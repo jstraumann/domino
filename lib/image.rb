@@ -14,6 +14,7 @@ class Image
       d['Motiven'] = m_match.empty? ? '-' : m_match.map{ |x| x.nil? ? '-' : x.Title }.join(', ')
       d_match = d['Darstellungsformen'].split(' ').map{ |t| codes.find{ |c| c.Column == 'Darstellungsformen' && c.Code == t } }
       d['Darstellungsformen'] = d_match.empty? ? '-' : d_match.map{ |x| x.nil? ? '-' : x.Title }.join(', ')
+      d['Status'] = (d['Status'] == 'res' ? 'reserviert' : nil)
     end
     return data
   end
