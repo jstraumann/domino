@@ -4,7 +4,7 @@ require_relative 'network'
 class Image
   def self.get(filter_param, page = 1)
     query = Filter.build(filter_param)
-    url = "https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=30&page=#{page}&#{query}"
+    url = "https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=500&page=#{page}&#{query}"
     data = Network.get_json(url)
     codes = Filter.codes
     data.each do |d|
