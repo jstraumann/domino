@@ -77,8 +77,8 @@
                   <div class="content">
                     <% filter.filters.each do |f| %>
                       <% if f.code %>
-                        <div class="filter" data-kind="<%= filter.kind %>" data-code="<%= f.code %>">
-                          <div class="indicator <%= 'active' if (params[:filter] || []).index(filter.kind + "=" + f.code) %>"></div>
+                        <div class="filter" data-kind="<%= f.kind || filter.kind %>" data-code="<%= f.code %>">
+                          <div class="indicator <%= 'active' if (params[:filter] || []).index((f.kind || filter.kind) + "=" + f.code) %>"></div>
                           <%= f.name %>
                         </div>
                       <% else %>
