@@ -10,7 +10,6 @@ const selectionContainer = document.querySelector('.selection .images');
 const offersButton = document.querySelector('.offers');
 const saveButton = document.querySelector('.save');
 const imprintButton = document.querySelector('.imprint');
-const collectionButton = document.querySelector('.collections');
 
 
 /**** FILTER CLICK HANDLER *****/
@@ -210,16 +209,27 @@ const windowStack = [];
 const offerText = document.querySelector('.fragments > .offers').outerHTML;
 
 offersButton.addEventListener('click', function() {
-  const alert = new badgui.alert('Angebote', offerText, {
+  const popup = new badgui.alert('Angebote', offerText, {
     buttons: [{
       label: 'Schliessen', action: function() {
         this.close();
       }
     }]
   });
-  alert.open();
+  popup.open();
 
-  const infoButtons = alert.element().querySelectorAll('.offer .offer-info');
+  const startButtons = popup.element().querySelectorAll('.offer .offer-start');
+  startButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const url = this.getAttribute('data-url');
+      if(url) {
+        popup.close();
+        window.location.href = url;
+      }
+    });
+  });
+
+  const infoButtons = popup.element().querySelectorAll('.offer .offer-info');
   infoButtons.forEach(btn => {
     btn.addEventListener('click', function() {
       const name = this.parentNode.getAttribute('data-name');
@@ -236,21 +246,17 @@ offersButton.addEventListener('click', function() {
         }]
       });
       a2.open();
-      windowStack.push(alert);
-      alert.close();
+      windowStack.push(popup);
+      popup.close();
     });
   });
 
-  alert.element().querySelector('.offer .offer-start').addEventListener('click', function() {
+  popup.element().querySelector('.offer .offer-start').addEventListener('click', function() {
     const name = this.parentNode.getAttribute('data-name').toLowerCase().replace(' ', '');
     if(name == 'domino') {
       window.location.reload();
     }
   });
-});
-
-collectionButton.addEventListener('click', function() {
-
 });
 
 function post(url, data, callback) {
