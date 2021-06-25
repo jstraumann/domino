@@ -3,8 +3,10 @@ require_relative 'network'
 
 class Image
   def self.get(filter_param, page = 1)
+    s = Time.now
     query = Filter.build(filter_param)
-    url = "https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=500&page=#{page}&#{query}"
+    url = "https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=10000&page=#{page}&#{query}"
+    puts url
     data = Network.get_json(url)
     codes = Filter.codes
     data.each do |d|
@@ -16,6 +18,7 @@ class Image
       d['Darstellungsformen'] = d_match.empty? ? '-' : d_match.map{ |x| x.nil? ? '-' : x.Title }.join(', ')
       d['Status'] = (d['Status'] == 'res' ? 'reserviert' : nil)
     end
+    puts "Image.get: #{Time.now - s}"
     return data
   end
 end

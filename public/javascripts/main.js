@@ -23,14 +23,17 @@ for(const filter of filters) {
     const kind = this.getAttribute('data-kind');
     const codes = JSON.parse(this.getAttribute('data-codes'));
 
-    const active = this.querySelector('.indicator').classList.contains('active');
+    const indicator = this.querySelector('.indicator');
+    const active = indicator.classList.contains('active');
 
     const qs = new QS();
     for(const code of codes) {
       if(active) {
         qs.remove('filter[]', `${kind}=${code}`);
+        indicator.classList.remove('active');
       } else {
         qs.add('filter[]', `${kind}=${code}`);
+        indicator.classList.add('active');
       }
     }
     window.location.search = qs.toString();
