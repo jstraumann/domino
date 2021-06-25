@@ -59,7 +59,7 @@ input[type=text] {
     overflow-x: scroll;
 
     .img-container {
-      //position: relative;
+      position: relative;
       margin-left: $global_padding * 4;
 
       &:last-child {
