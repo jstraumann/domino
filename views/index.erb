@@ -56,7 +56,7 @@
                   <span class="format">{{image.Techniken}}</span><br>
                   <span class="format">{{image.Format}}cm, {{image.Jahr}}{{#image.Status}}, {{image.Status}}{{/image.Status}}</span><br>
                 </div>
-                <div class="remove-preview"></div>
+                <div class="remove-preview"><img src="delete.svg"></div>
               </div>
             </div>
           </script>
@@ -106,7 +106,7 @@
             <% @images.each do |image| %>
               <img src="https://archiv.juergstraumann.ch/<%= image['thumb'] %>" data-info="<%= CGI.escapeHTML image.to_json %>"
                 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
-                unselectable="on" onselectstart="return false;" onmousedown="return false;">
+                unselectable="on" onselectstart="return false;" onmousedown="return false;" loading="lazy">
             <% end %>
           </div>
         </div>
