@@ -108,6 +108,13 @@ function refreshSelection() {
     });
   }
 
+  window.setTimeout(function() {
+    document.querySelector('.selection .images').scroll({
+      left: 100000,
+      behavior: 'smooth'
+    });
+  }, 200);
+
   showHideButtons();
 }
 
