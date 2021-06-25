@@ -21,15 +21,17 @@ for(const filter of filters) {
     e.stopPropagation();
 
     const kind = this.getAttribute('data-kind');
-    const code = this.getAttribute('data-code');
+    const codes = JSON.parse(this.getAttribute('data-codes'));
 
     const active = this.querySelector('.indicator').classList.contains('active');
 
     const qs = new QS();
-    if(active) {
-      qs.remove('filter[]', `${kind}=${code}`);
-    } else {
-      qs.add('filter[]', `${kind}=${code}`);
+    for(const code of codes) {
+      if(active) {
+        qs.remove('filter[]', `${kind}=${code}`);
+      } else {
+        qs.add('filter[]', `${kind}=${code}`);
+      }
     }
     window.location.search = qs.toString();
   });

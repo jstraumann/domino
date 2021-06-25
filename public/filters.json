@@ -5,16 +5,16 @@
     "kind": "Motiven",
     "column": 1,
     "filters": [
-      { "kind": "Paraphrasen", "name": "Einzelne", "code": "Kr5a" },
-      { "kind": "Paraphrasen", "name": "Paare", "code": "Kr5b" },
-      { "kind": "Paraphrasen", "name": "Gruppen", "code": "Kr5c" },
-      { "kind": "Paraphrasen", "name": "Akt", "code": "Kr5d" },
-      { "kind": "Paraphrasen", "name": "Köpfe", "code": "Kr5e" },
+      { "kind": "Paraphrasen", "name": "Einzelne", "codes": ["Kr5a"] },
+      { "kind": "Paraphrasen", "name": "Paare", "codes": ["Kr5b"] },
+      { "kind": "Paraphrasen", "name": "Gruppen", "codes": ["Kr5c"] },
+      { "kind": "Paraphrasen", "name": "Akt", "codes": ["Kr5d"] },
+      { "kind": "Paraphrasen", "name": "Köpfe", "codes": ["Kr5e"] },
       { "name": "space", "code": null },
-      { "name": "Mischwesen", "code": "Mw" },
-      { "name": "Tiere", "code": "Tie" },
-      { "name": "Pflanzen", "code": "Pf" },
-      { "name": "Landschaften", "code": "L" }
+      { "name": "Mischwesen", "codes": ["Mw"] },
+      { "name": "Tiere", "codes": ["Tie"] },
+      { "name": "Pflanzen", "codes": ["Pf"] },
+      { "name": "Landschaften", "codes": ["L"] }
     ]
   }, {
     "category": "Motiv",
@@ -22,16 +22,16 @@
     "kind": "Motiven",
     "column": 2,
     "filters": [
-      { "name": "Architektur, Intérieurs", "code": "Ar" },
-      { "name": "Objekte", "code": "Pf" },
-      { "name": "Stillleben", "code": "St" },
-      { "name": "Tische, Sockel", "code": "Ti" },
-      { "name": "Vorhang", "code": "Vo" },
-      { "name": "Black Box", "code": "bb" },
+      { "name": "Architektur, Intérieurs", "codes": ["Ar"] },
+      { "name": "Objekte", "codes": ["Pf"] },
+      { "name": "Stillleben", "codes": ["St"] },
+      { "name": "Tische, Sockel", "codes": ["Ti"] },
+      { "name": "Vorhang", "codes": ["Vo"] },
+      { "name": "Black Box", "codes": ["bb"] },
       { "name": "space", "code": null },
-      { "name": "Bild im Bild", "code": "BiB" },
-      { "name": "leeres Bild", "code": "IL" },
-      { "name": "Schriftzeichen", "code": "Sch" }
+      { "name": "Bild im Bild", "codes": ["BiB"] },
+      { "name": "leeres Bild", "codes": ["IL"] },
+      { "name": "Schriftzeichen", "codes": ["Sch"] }
     ]
   }, {
     "category": "Technik",
@@ -39,17 +39,17 @@
     "kind": "Technik",
     "column": 3,
     "filters": [
-      { "name": "Bleistift", "code": "B" },
-      { "name": "Kohle", "code": "K" },
-      { "name": "Farbstift", "code": "Fa" },
-      { "name": "Kugelschreiber", "code": "Ks" },
-      { "name": "Tusche", "code": "T" },
-      { "name": "Gouache", "code": "G" },
-      { "name": "Ölfarbe", "code": "OL" },
-      { "name": "Radierung", "code": "R" },
-      { "name": "Digitaldruck", "code": "Dd" },
-      { "name": "Hochdruck", "code": "S" },
-      { "name": "Lithografie", "code": "Lg" }
+      { "name": "Bleistift", "codes": ["B"] },
+      { "name": "Kohle", "codes": ["K"] },
+      { "name": "Farbstift", "codes": ["Fa"] },
+      { "name": "Kugelschreiber", "codes": ["Ks"] },
+      { "name": "Tusche", "codes": ["T"] },
+      { "name": "Gouache", "codes": ["G"] },
+      { "name": "Ölfarbe", "codes": ["OL", "OP"] },
+      { "name": "Radierung", "codes": ["R"] },
+      { "name": "Digitaldruck", "codes": ["Dd"] },
+      { "name": "Hochdruck", "codes": ["S"] },
+      { "name": "Lithografie", "codes": ["Lg"] }
     ]
   }, {
     "category": "Farben",
@@ -57,12 +57,12 @@
     "kind": "Farbigkeit",
     "column": 4,
     "filters": [
-      { "name": "gelb", "code": "y" },
-      { "name": "grün", "code": "g" },
-      { "name": "blau", "code": "c" },
-      { "name": "violett", "code": "v" },
-      { "name": "rot", "code": "m" },
-      { "name": "unbunt", "code": "gr" }
+      { "name": "gelb", "codes": ["y"] },
+      { "name": "grün", "codes": ["g"] },
+      { "name": "blau", "codes": ["c"] },
+      { "name": "violett", "codes": ["v"] },
+      { "name": "rot", "codes": ["m"] },
+      { "name": "unbunt", "codes": ["gr"] }
     ]
   }, {
     "category": "Darstellungsform",
@@ -70,17 +70,17 @@
     "kind": "Darstellungsformen",
     "column": 5,
     "filters": [
-      { "name": "Collage", "code": "Cb" },
-      { "name": "Frottage", "code": "Fro" },
+      { "name": "Collage", "codes": ["Cb"] },
+      { "name": "Frottage", "codes": ["Fro"] },
       { "name": "space", "code": null },
-      { "name": "Netzstruktur", "code": "Gi" },
-      { "name": "Linienstruktur", "code": "Lst" },
-      { "name": "Linienwirbel", "code": "Lwi" },
-      { "name": "Mosaikstruktur", "code": "Mo" },
-      { "name": "ovale Öffnung", "code": "ovÖ" },
-      { "name": "serielle Collage", "code": "sCo" },
-      { "name": "serielle Muster", "code": "sM" },
-      { "name": "Umrisslinie", "code": "Ul" }
+      { "name": "Netzstruktur", "codes": ["Gi"] },
+      { "name": "Linienstruktur", "codes": ["Lst"] },
+      { "name": "Linienwirbel", "codes": ["Lwi"] },
+      { "name": "Mosaikstruktur", "codes": ["Mo"] },
+      { "name": "ovale Öffnung", "codes": ["ovÖ"] },
+      { "name": "serielle Collage", "codes": ["sCo"] },
+      { "name": "serielle Muster", "codes": ["sM"] },
+      { "name": "Umrisslinie", "codes": ["Ul"] }
     ]
   }, {
     "category": "Darstellungsart",
@@ -88,8 +88,8 @@
     "kind": "Gegenständlich/Ungegenständlich",
     "column": 6,
     "filters": [
-      { "name": "Gegenständlich", "code": "Gs" },
-      { "name": "Ungegenständlich", "code": "U" }
+      { "name": "Gegenständlich", "codes": ["Gs"] },
+      { "name": "Ungegenständlich", "codes": ["U"] }
     ]
   }, {
     "category": "Ausrichtung",
@@ -97,9 +97,9 @@
     "kind": "Ausrichtung",
     "column": 6,
     "filters": [
-      { "name": "breit", "code": "breit" },
-      { "name": "hoch", "code": "hoch" },
-      { "name": "quadratisch", "code": "quadratisch" }
+      { "name": "breit", "codes": ["breit"] },
+      { "name": "hoch", "codes": ["hoch"] },
+      { "name": "quadratisch", "codes": ["quadratisch"] }
     ]
   }, {
     "category": "Komposition",
@@ -107,15 +107,15 @@
     "kind": "Komposition",
     "column": 7,
     "filters": [
-      { "name": "horizontal", "code": "hK" },
-      { "name": "vertikal", "code": "vK" },
-      { "name": "kreuzförmig", "code": "kK" },
-      { "name": "diagonal", "code": "dK" },
-      { "name": "doppelt diagonal", "code": "ddK" },
-      { "name": "rund, oval", "code": "ROk" },
-      { "name": "Dreieckskomp.", "code": "Drk" },
-      { "name": "Zentralkomp.", "code": "Zk" },
-      { "name": "Randkomp.", "code": "Rk" }
+      { "name": "horizontal", "codes": ["hK"] },
+      { "name": "vertikal", "codes": ["vK"] },
+      { "name": "kreuzförmig", "codes": ["kK"] },
+      { "name": "diagonal", "codes": ["dK"] },
+      { "name": "doppelt diagonal", "codes": ["ddK"] },
+      { "name": "rund, oval", "codes": ["ROk"] },
+      { "name": "Dreieckskomp.", "codes": ["Drk"] },
+      { "name": "Zentralkomp.", "codes": ["Zk"] },
+      { "name": "Randkomp.", "codes": ["Rk"] }
     ]
   }
 ]
