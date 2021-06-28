@@ -62,7 +62,7 @@
       { "name": "blau", "codes": ["c"] },
       { "name": "violett", "codes": ["v"] },
       { "name": "rot", "codes": ["m"] },
-      { "name": "unbunt", "codes": ["gr"] }
+      { "name": "schwarzweiss", "codes": ["gr"] }
     ]
   }, {
     "category": "Darstellungsform",
