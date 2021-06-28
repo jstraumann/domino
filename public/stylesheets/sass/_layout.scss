@@ -160,7 +160,7 @@ input[type=text] {
         .filter {
           display: flex;
           align-items: center;
-          padding: $global_padding * 0.35;
+          padding: $global_padding * 0.25;
           cursor: pointer;
 
           &:first-child {
