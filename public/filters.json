@@ -23,7 +23,7 @@
     "column": 2,
     "filters": [
       { "name": "Architektur", "codes": ["Ar"] },
-      { "name": "Objekte", "codes": ["Pf"] },
+      { "name": "Objekte", "codes": ["O"] },
       { "name": "Stillleben", "codes": ["St"] },
       { "name": "Tische, Sockel", "codes": ["Ti"] },
       { "name": "Vorhang", "codes": ["Vo"] },
