@@ -22,7 +22,7 @@
     "kind": "Motiven",
     "column": 2,
     "filters": [
-      { "name": "Architektur, Intérieurs", "codes": ["Ar"] },
+      { "name": "Architektur", "codes": ["Ar"] },
       { "name": "Objekte", "codes": ["Pf"] },
       { "name": "Stillleben", "codes": ["St"] },
       { "name": "Tische, Sockel", "codes": ["Ti"] },
