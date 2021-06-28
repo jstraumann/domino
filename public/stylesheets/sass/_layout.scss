@@ -163,6 +163,10 @@ input[type=text] {
           padding: $global_padding * 0.35;
           cursor: pointer;
 
+          &:first-child {
+            padding-top: 0 !important;
+          }
+
           .indicator {
             width: 1rem;
             height: 1rem;
