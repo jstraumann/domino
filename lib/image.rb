@@ -5,8 +5,7 @@ class Image
   def self.get(filter_param, page = 1)
     s = Time.now
     query = Filter.build(filter_param)
-    url = "https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=10000&page=#{page}&#{query}"
-    puts url
+    url = "https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=30&page=#{page}&#{query}"
     data = Network.get_json(url)
     codes = Filter.codes
     data.each do |d|
