@@ -4,3 +4,21 @@
 @import '_settings';
 @import '_menu';
 @import '_gui';
+
+.btn {
+  border: none;
+  padding: 6px;
+  font-size: $hud_font_size;
+
+  width: 100%;
+  cursor: pointer;
+  background-color: $button_background_color;
+
+  &:hover {
+    background-color: $hud_hover_background;
+  }
+}
+
+input[data-nextpage='0'] {
+  display: none;
+}

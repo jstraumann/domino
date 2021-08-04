@@ -1,3 +1,4 @@
+require 'httparty'
 require 'sinatra/base'
 require 'sinatra/reloader'
 require 'sinatra/activerecord'
@@ -24,8 +25,8 @@ class Domino < Sinatra::Base
   end
 
   get '/' do
-    @stats = Search.stats(params[:filter] || [])
-    @images = Image.get(params[:filter] || [])
+    @stats = Search.stats([])
+    @images = Image.get([])
     @filters = Filter.all
     erb :index
   end

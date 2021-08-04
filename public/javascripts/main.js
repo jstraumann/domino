@@ -4,8 +4,10 @@ const selection = document.querySelector('.images');
 const filters = document.querySelectorAll('.filter');
 const displayButton = document.querySelector('.hud-show');
 const resetButton = document.querySelector('.hud-reset');
+const countText = document.querySelector('.hud-count');
+const showMore = document.querySelector('.show-more');
 const choiceClose = document.querySelector('.choice-back');
-const choices = document.querySelectorAll('.choice img');
+const choiceContainer = document.querySelector('.choice .images');
 const selectionContainer = document.querySelector('.selection .images');
 const offersButton = document.querySelector('.offers');
 const saveButton = document.querySelector('.save');
@@ -19,24 +21,66 @@ for(const filter of filters) {
     e.preventDefault();
     e.stopPropagation();
 
-    const kind = this.getAttribute('data-kind');
-    const codes = JSON.parse(this.getAttribute('data-codes'));
-
     const indicator = this.querySelector('.indicator');
-    const active = indicator.classList.contains('active');
+    indicator.classList.toggle('active');
 
-    const qs = new QS();
-    for(const code of codes) {
-      if(active) {
-        qs.remove('filter[]', `${kind}=${code}`);
-        indicator.classList.remove('active');
-      } else {
-        qs.add('filter[]', `${kind}=${code}`);
-        indicator.classList.add('active');
+    choiceContainer.innerHTML = '';
+    showMore.setAttribute('data-nextpage', 0);
+    showMore.setAttribute('data-totalpages', 0);
+
+    const query = getFilterQuery();
+
+    const url = 'https://bildarchiv-js.ch/api/images?sort=-Jahr&per_page=30&page=1' + query;
+    fetch(url).then(response => response.json()).then(json => {
+      countText.value = json.total;
+      showMore.setAttribute('data-totalpages', json.pages);
+      if(json.pages > 1) {
+        showMore.setAttribute('data-nextpage', 2);
+      }
+    });
+  });
+}
+
+function getFilterQuery() {
+  const qs = {};
+  for(const f of filters) {
+    const ind = f.querySelector('.indicator');
+    const kind = f.getAttribute('data-kind');
+    const codes = JSON.parse(f.getAttribute('data-codes'));
+    if(ind && ind.classList.contains('active')) {
+      if(!qs[kind]) {
+        qs[kind] = [];
+      }
+      for(const code of codes) {
+        qs[kind].push(code);
       }
     }
-    window.location.search = qs.toString();
-  });
+  }
+
+  let query = '';
+
+  for(const k in qs) {
+    query += '&o_' + k + '=' + '\\b' + qs[k].join('\\b,\\b') + '\\b';
+  }
+
+  return query;
+}
+
+function renderImages(images) {
+  const template = document.getElementById('choice-image-template').innerHTML;
+
+  for(const image of images) {
+    const previewString = Mustache.render(template, { thumb: image.thumb, info: JSON.stringify(image) });
+    const preview = htmlToElement(previewString);
+    preview.addEventListener('click', function() {
+      const info = JSON.parse(this.getAttribute('data-info'));
+      const current = Selection.load();
+      current.push(info);
+      Selection.store(current);
+      refreshSelection();
+    });
+    choiceContainer.appendChild(preview);
+  }
 }
 
 /**** SHOW FILTERED IMAGES *****/
@@ -44,6 +88,37 @@ for(const filter of filters) {
 displayButton.addEventListener('click', function() {
   const choice = document.querySelector('.choice');
   choice.style.top = document.querySelector('.selection').clientHeight + 'px';
+
+  choiceContainer.innerHTML = '';
+
+  const query = getFilterQuery();
+
+  const url = 'https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=30&page=1' + query;
+
+  fetch(url).then(response => response.json()).then(images => {
+    renderImages(images);
+  });
+});
+
+showMore.addEventListener('click', function() {
+  const page = parseInt(this.getAttribute('data-nextpage'), 10);
+  const totalPages = parseInt(this.getAttribute('data-totalpages'), 10);
+
+  const query = getFilterQuery();
+
+  const url = 'https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=30&page=' + page + query;
+
+  if(page > totalPages) {
+    return;
+  } else if(page < totalPages) {
+    this.setAttribute('data-nextpage', page + 1.0);
+  } else if(page == totalPages) {
+    this.setAttribute('data-nextpage', 0);
+  }
+
+  fetch(url).then(response => response.json()).then(images => {
+    renderImages(images);
+  });
 });
 
 /**** RESET FILTER *****/
@@ -64,16 +139,6 @@ choiceClose.addEventListener('click', function() {
 Selection.init();
 
 refreshSelection();
-
-for(const choice of choices) {
-  choice.addEventListener('click', function() {
-    const info = JSON.parse(this.getAttribute('data-info'));
-    const current = Selection.load();
-    current.push(info);
-    Selection.store(current);
-    refreshSelection();
-  });
-}
 
 /**** LOAD CHOSEN IMAGES *****/
 

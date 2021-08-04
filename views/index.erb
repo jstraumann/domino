@@ -78,7 +78,7 @@
                     <% filter.filters.each do |f| %>
                       <% if f.codes %>
                         <div class="filter" data-kind="<%= f.kind || filter.kind %>" data-codes="<%= CGI.escapeHTML f.codes.to_json %>">
-                          <div class="indicator <%= 'active' if (params[:filter] || []).index((f.kind || filter.kind) + "=" + f.codes.first) %>"></div>
+                          <div class="indicator"></div>
                           <%= f.name %>
                         </div>
                       <% else %>
@@ -103,12 +103,16 @@
             <div class="line"><input type="submit" class="choice-back" value="Zurück"></div>
           </div>
           <div class="images">
-            <% @images.each do |image| %>
-              <img src="https://archiv.juergstraumann.ch/<%= image['thumb'] %>" data-info="<%= CGI.escapeHTML image.to_json %>"
-                style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
-                unselectable="on" onselectstart="return false;" onmousedown="return false;" loading="lazy" width="150" height="150">
-            <% end %>
+            
           </div>
+
+          <script id="choice-image-template" type="x-tmpl-mustache">
+            <img src="https://archiv.juergstraumann.ch/{{thumb}}" data-info="{{info}}"
+                style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+                unselectable="on" onselectstart="return false;" onmousedown="return false;" width="150" height="150">
+          </script>
+
+          <input class="btn show-more" type="submit" value="+ + + +" data-nextpage="0">
         </div>
 
         <div class="fragments">
