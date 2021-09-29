@@ -5,7 +5,6 @@ require 'sinatra/activerecord'
 
 require './lib/filter'
 require './lib/search'
-require './lib/image'
 require './lib/network'
 
 class Collection < ActiveRecord::Base
@@ -26,7 +25,6 @@ class Domino < Sinatra::Base
 
   get '/' do
     @stats = Search.stats([])
-    @images = Image.get([])
     @filters = Filter.all
     erb :index
   end

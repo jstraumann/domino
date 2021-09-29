@@ -13,6 +13,17 @@ const offersButton = document.querySelector('.offers');
 const saveButton = document.querySelector('.save');
 const imprintButton = document.querySelector('.imprint');
 
+/**** LOAD FILTERS IF NECESSARY ****/
+let filterCodes = [];
+
+function loadFilters(cb) {
+  fetch('https://bildarchiv-js.ch/api/filters/all.json')
+    .then(response => response.json())
+    .then(json => {
+      filterCodes = json;
+      cb();
+    });
+}
 
 /**** FILTER CLICK HANDLER *****/
 
@@ -145,7 +156,25 @@ refreshSelection();
 function refreshSelection() {
   selectionContainer.innerHTML = '';
   const images = Selection.load();
+
+  if(filterCodes.length === 0) {
+    loadFilters(refreshSelection);
+    return;
+  }
+
   for(const image of images) {
+
+    const t_match = image['Techniken'].trim().split(' ').map(t => filterCodes.find(c => c.Column === 'Technik' && c.Code === t));
+    image['Techniken'] = t_match.length === 0 ? '-' : t_match.map(x => !x ? '-' : x.Title ).join(', ');
+
+    const m_match = image['Motiven'].trim().split(' ').map(t => filterCodes.find(c => c.Column === 'Motiven' && c.Code == t));
+    image['Motiven'] = m_match.length === 0 ? '-' : m_match.map(x => !x ? '-' : x.Title).join(', ');
+
+    const d_match = image['Darstellungsformen'].trim().split(' ').map(t => filterCodes.find( c => c.Column === 'Darstellungsformen' && c.Code === t));
+    image['Darstellungsformen'] = d_match.length === 0 ? '-' : d_match.map( x => !x ? '-' : x.Title).join(', ');
+    image['Status'] = (image['Status'] === 'res' ? 'reserviert' : null);
+    image['Grösse'] = (image['Grösse'] ? image['Grösse'] : 'klein');
+    image['Ausrichtung'] = (image['Ausrichtung'] ? image['Ausrichtung'] : 'breit');
 
     const template = document.getElementById('image-template').innerHTML;
     const previewString = Mustache.render(template, { image: image, info: JSON.stringify(image) });
