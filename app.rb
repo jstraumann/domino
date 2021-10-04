@@ -37,4 +37,8 @@ class Domino < Sinatra::Base
   get '/collections' do
     erb :collections
   end
+
+  get '/schnupperlehre' do
+    erb :schnupperlehre
+  end
 end
