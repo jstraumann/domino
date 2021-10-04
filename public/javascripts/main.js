@@ -153,6 +153,20 @@ refreshSelection();
 
 /**** LOAD CHOSEN IMAGES *****/
 
+function getPreview(data, onSuccess) {
+  fetch('/preview', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+  .then(response => response.text())
+  .then(data => {
+    onSuccess(data);
+  })
+}
+
 function refreshSelection() {
   selectionContainer.innerHTML = '';
   const images = Selection.load();
@@ -162,44 +176,34 @@ function refreshSelection() {
     return;
   }
 
-  for(const image of images) {
+  for(let image of images) {
 
-    const t_match = image['Techniken'].trim().split(' ').map(t => filterCodes.find(c => c.Column === 'Technik' && c.Code === t));
-    image['Techniken'] = t_match.length === 0 ? '-' : t_match.map(x => !x ? '-' : x.Title ).join(', ');
+    image['allowdelete'] = true;
 
-    const m_match = image['Motiven'].trim().split(' ').map(t => filterCodes.find(c => c.Column === 'Motiven' && c.Code == t));
-    image['Motiven'] = m_match.length === 0 ? '-' : m_match.map(x => !x ? '-' : x.Title).join(', ');
+    getPreview(image, function(transformedImage) {
+      const preview = htmlToElement(transformedImage);
+      selectionContainer.appendChild(preview);
 
-    const d_match = image['Darstellungsformen'].trim().split(' ').map(t => filterCodes.find( c => c.Column === 'Darstellungsformen' && c.Code === t));
-    image['Darstellungsformen'] = d_match.length === 0 ? '-' : d_match.map( x => !x ? '-' : x.Title).join(', ');
-    image['Status'] = (image['Status'] === 'res' ? 'reserviert' : null);
-    image['Grösse'] = (image['Grösse'] ? image['Grösse'] : 'klein');
-    image['Ausrichtung'] = (image['Ausrichtung'] ? image['Ausrichtung'] : 'breit');
+      preview.addEventListener('click', function() {
+        const overlay = this.querySelector('.overlay');
+        if(overlay.style.display == 'flex') {
+          overlay.style.display = 'none';
+        } else {
+          overlay.style.display = 'flex';
+        }
+      });
 
-    const template = document.getElementById('image-template').innerHTML;
-    const previewString = Mustache.render(template, { image: image, info: JSON.stringify(image) });
-    const preview = htmlToElement(previewString);
-    selectionContainer.appendChild(preview);
-
-    preview.addEventListener('click', function() {
-      const overlay = this.querySelector('.overlay');
-      if(overlay.style.display == 'flex') {
-        overlay.style.display = 'none';
-      } else {
-        overlay.style.display = 'flex';
-      }
-    });
-
-    preview.querySelector('.remove-preview').addEventListener('click', function() {
-      const current = Selection.load();
-      const infoStr = this.parentNode.parentNode.getAttribute('data-info');
-      const info = JSON.parse(infoStr);
-      const match = current.find(function(img) { return img.path == info.path });
-      const idx = current.indexOf(match);
-      current.splice(idx, 1);
-      Selection.store(current);
-      refreshSelection();
-    });
+      preview.querySelector('.remove-preview').addEventListener('click', function() {
+        const current = Selection.load();
+        const infoStr = this.parentNode.parentNode.getAttribute('data-info');
+        const info = JSON.parse(infoStr);
+        const match = current.find(function(img) { return img.path == info.path });
+        const idx = current.indexOf(match);
+        current.splice(idx, 1);
+        Selection.store(current);
+        refreshSelection();
+      });
+    })
   }
 
   window.setTimeout(function() {

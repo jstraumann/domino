@@ -6,6 +6,8 @@ require 'sinatra/activerecord'
 require './lib/filter'
 require './lib/search'
 require './lib/network'
+require './lib/kuckucksei'
+require './lib/image'
 
 class Collection < ActiveRecord::Base
 
@@ -17,7 +19,7 @@ class Domino < Sinatra::Base
 
   configure :development do
     register Sinatra::Reloader
-    also_reload 'lib/filter.rb'
+    also_reload 'lib/*.rb'
     after_reload do
       puts 'reloaded'
     end
@@ -40,5 +42,31 @@ class Domino < Sinatra::Base
 
   get '/schnupperlehre' do
     erb :schnupperlehre
+  end
+
+  get '/kuckucksei' do
+    redirect '/kuckucksei/Akt'
+  end
+
+  get '/kuckucksei/:kind' do
+    k = Kuckucksei.new(params[:kind])
+    @images = k.images
+    @previous = k.previous
+    @next = k.next
+    erb :kuckucksei
+  end
+
+  post '/transform' do
+    request.body.rewind
+    d = JSON.parse(request.body.read)
+    d = Image.transform(d)
+    d.to_json
+  end
+
+  post '/preview' do
+    request.body.rewind
+    d = JSON.parse(request.body.read)
+    @image = Image.transform(d)
+    erb :image_with_overlay
   end
 end

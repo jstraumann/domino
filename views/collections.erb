@@ -8,6 +8,9 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link rel="stylesheet" href="stylesheets/main.css">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/kioskboard@1.4.0/dist/kioskboard-1.4.0.min.css" />
+      <style>
+        .selection { height: 70vh !important; }
+      </style>
   </head>
   <body data-page="collections">
     <div class="menu">
@@ -36,19 +39,8 @@
         </div>
         <div class="images">
           <% c.images.each do |image| %>
-            <div class="img-container <%= image['Grösse'] %> <%= image['Ausrichtung'] %> data-info="<%= image.to_json %>"
-              style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
-              unselectable="on" onselectstart="return false;" onmousedown="return false;">
-                <img src="https://imgproxy.juergstraumann.ch/insecure/s:400:300/plain/https://archiv.juergstraumann.ch/<%= image['path'] %>@jpg" draggable="false">
-                <div class="overlay">
-                  <div>
-                    <span class="title"><%= image['Titel'] %></span>
-                    <br>
-                    <%= image['Jahr'] %>
-                  </div>
-                  <div class="remove-preview"></div>
-                </div>
-            </div>
+            <% @image = image %>
+            <%= erb :image_with_overlay %>
           <% end %>
         </div>
       </div>
@@ -61,6 +53,17 @@ const collections = document.querySelectorAll('.collection');
 for(const collection of collections) {
   collection.addEventListener('click', function() {
     window.location.href = '/collections?id=' + this.getAttribute('data-id');
+  });
+}
+
+for(const preview of document.querySelectorAll('.img-container')) {
+  preview.addEventListener('click', function() {
+    const overlay = this.querySelector('.overlay');
+    if(overlay.style.display == 'flex') {
+      overlay.style.display = 'none';
+    } else {
+      overlay.style.display = 'flex';
+    }
   });
 }
 </script>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/stylesheets/main.css">
+  <title>Schnupperlehre</title>
+  <style>
+    html, body { margin: 0; padding: 0; }
+    body { background-color: black; display: flex; justify-content: center; }
+    .content { width: 100%; display: flex; align-items: center; justify-content: space-around;}
+    .images { width: 140vh; height: 100vh; background-color: #999; }
+    .row { width: 100%; height: 50%; display: flex; justify-content: space-between; align-items: center; }
+    .cell { width: 50%; height: 100%; display: flex; justify-content: center; align-items: center; margin-left: 1rem !important; margin-right: 1rem !important; }
+    .cell img { max-width: 100%; }
+
+    button { font-size: 1rem; }
+    button.back { position: absolute; top: 50px; left: 50px; font-size: 1rem; }
+  </style>
+</head>
+<body data-page="kuckucksei">
+
+<button class="back" data-url="/">&larr; Zurück</button>
+
+<div class="content">
+  <button data-url="/kuckucksei/<%= @previous %>">&larr; Vorheriges</button>
+
+  <div class="images">
+    <% prefix = settings.production? ? 'https://imgproxy.juergstraumann.ch/insecure/s:400:300/plain/https://domino.juergstraumann.ch' : '' %>
+    <% postfix = settings.production? ? '@jpg' : '' %>
+    <div class="row">
+      <% @images[0..3].each do |img| %>
+        <% @image = img %>
+        <%= erb :image_with_overlay %>
+      <% end %>
+    </div>
+    <div class="row">
+      <% @images[4..7].each do |img| %>
+        <% @image = img %>
+        <%= erb :image_with_overlay %>
+      <% end %>
+    </div>
+  </div>
+
+  <button data-url="/kuckucksei/<%= @next %>">Nächstes &rarr;</button>
+</div>
+
+<script>
+  for(const button of document.querySelectorAll('button')) {
+    button.addEventListener('click', function() { window.location.href = this.getAttribute('data-url'); });
+  }
+
+  for(const preview of document.querySelectorAll('.img-container')) {
+    preview.addEventListener('click', function() {
+      const overlay = this.querySelector('.overlay');
+      if(overlay.style.display == 'flex') {
+        overlay.style.display = 'none';
+      } else {
+        overlay.style.display = 'flex';
+      }
+    });
+  }
+
+</script>
+</body>
+</html>

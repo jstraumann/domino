@@ -1,0 +1,34 @@
+<div class="cell img-container <%= @image['Grösse'] %> <%= @image['Ausrichtung'] %>" data-info="<%= Rack::Utils.escape_html @image.to_json %>"
+style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
+unselectable="on" onselectstart="return false;" onmousedown="return false;">
+  <% if @image['url'] %>
+    <img src="https://imgproxy.juergstraumann.ch/insecure/s:400:300/plain/<%= @image['url'] %>@jpg" draggable="false">
+  <% else %>
+    <img src="https://imgproxy.juergstraumann.ch/insecure/s:400:300/plain/https://archiv.juergstraumann.ch/<%= @image['path'] %>@jpg" draggable="false">
+  <% end %>
+  <div class="overlay">
+    <div>
+      <% if @image['Titel'] %>
+        <span class="title"><%= @image['Titel'] %></span>
+      <% end %>
+      <% if @image['Nummer'] %>
+        [<%= @image['Nummer'] %>]
+      <% end %>
+      <br>
+      <br>
+      <% if @image['Techniken'] %>
+        <span class="format"><%= @image['Techniken'] %></span><br>
+      <% end %>
+      <% if @image['Format'] %>
+        <span class="format"><%= @image['Format'] %>cm,
+      <% end %>
+      <% if @image['Jahr'] %>
+        <%= @image['Jahr'] %>
+      <% end %>
+      <% ", #{@image['Status']}" if @image['Status'] %></span><br>
+    </div>
+    <% if @image['allowdelete'] %>
+      <div class="remove-preview"><img src="/delete.svg"></div>
+    <% end %>
+  </div>
+</div>
