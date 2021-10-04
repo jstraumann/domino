@@ -1,0 +1,101 @@
+<style>
+  html, body { margin: 0; padding: 0; }
+  body { background-color: black; display: flex; justify-content: center; }
+  .images { width: 120vh; height: 100vh; background-color: #999; }
+  .row { width: 100%; height: 50%; display: flex; }
+  .cell { width: 50%; height: 100%; display: flex; justify-content: center; align-items: center; }
+  .cell img { max-width: 80%; max-height: 80%; }
+</style>
+
+<div class="images">
+  <div class="row">
+    <div class="cell"><img src="" class="slot1"></div>
+    <div class="cell"><img src="" class="slot2"></div>
+  </div>
+  <div class="row">
+    <div class="cell"><img src="" class="slot3"></div>
+    <div class="cell"><img src="" class="slot4"></div>
+  </div>
+</div>
+
+<script>
+  const slots = [
+
+    // SLOT 1
+    { slot: 1, id: '6855', start: 0 },
+    { slot: 1, id: '2604', start: 7 },
+    { slot: 1, id: '1198', start: 14 },
+    { slot: 1, id: '6721', start: 21, end: 28 },
+    { slot: 1, id: '3415', start: 35 },
+    { slot: 1, id: '6338', start: 42 },
+    { slot: 1, id: '5053', start: 49 },
+    { slot: 1, id: '7635', start: 56, end: 63 },
+    { slot: 1, id: '7598', start: 70 },
+    { slot: 1, id: '3827', start: 77 },
+    { slot: 1, id: '7302', start: 84, end: 91 },
+
+    // SLOT 2
+    { slot: 2, id: '7455', start: 1 },
+    { slot: 2, id: '0976', start: 9 },
+    { slot: 2, id: '7966', start: 17 },
+    { slot: 2, id: '5885', start: 25, end: 33 },
+    { slot: 2, id: '6985', start: 41 },
+    { slot: 2, id: '6081', start: 49 },
+    { slot: 2, id: '1023', start: 57 },
+    { slot: 2, id: '0924', start: 65, end: 73 },
+    { slot: 2, id: '1140', start: 81, end: 89 },
+
+    // SLOT 4
+    { slot: 4, id: '0954', start: 3 },
+    { slot: 4, id: '4059', start: 12 },
+    { slot: 4, id: '5172', start: 21 },
+    { slot: 4, id: '5131', start: 30 },
+    { slot: 4, id: '6639', start: 39 },
+    { slot: 4, id: '6076', start: 48 },
+    { slot: 4, id: '5997', start: 57 },
+    { slot: 4, id: '4977', start: 66 },
+    { slot: 4, id: '4720', start: 75, end: 84 },
+
+    // SLOT 3
+    { slot: 3, id: '8021', start: 2 },
+    { slot: 3, id: '6033', start: 12 },
+    { slot: 3, id: '5274', start: 22 },
+    { slot: 3, id: '5257', start: 32 },
+    { slot: 3, id: '2141', start: 42 },
+    { slot: 3, id: '4495', start: 52 },
+    { slot: 3, id: '4490', start: 62 },
+    { slot: 3, id: '0782', start: 72 },
+    { slot: 3, id: '3969', start: 82, end: 92 },
+  ];
+
+  function load(id, onSuccess) {
+    const url = `https://bildarchiv-js.ch/api/images.json?sort=-Jahr&per_page=30&page=1&o_Nummer=${id}`;
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        onSuccess(data[0].path);
+      });
+  }
+
+  let time = 0;
+  window.setInterval(function() {
+    console.log(time);
+    const ends = slots.filter(i => i.end === time);
+    for(const end of ends) {
+      document.querySelector(`.slot${end.slot}`).src = '';
+    }
+
+    const starts = slots.filter(i => i.start === time);
+    for(const start of starts) {
+      load(start.id, path => {
+        document.querySelector(`.slot${start.slot}`).src =
+          `https://imgproxy.juergstraumann.ch/insecure/s:400:300/plain/https://archiv.juergstraumann.ch/${path}@jpg`;
+      });
+    }
+
+    time++;
+    if(time > 92) {
+      time = 0;
+    }
+  }, 1000);
+</script>
