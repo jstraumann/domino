@@ -1,4 +1,4 @@
-<div class="cell img-container <%= @image['Grösse'] %> <%= @image['Ausrichtung'] %>" data-info="<%= Rack::Utils.escape_html @image.to_json %>"
+<div class="cell img-container <%= @image['Grösse'] if !defined?(nosize) %> <%= @image['Ausrichtung'] if !defined?(nosize) %>" data-size="<%= @image['Grösse'] %> <%= @image['Ausrichtung'] %>" data-info="<%= Rack::Utils.escape_html @image.to_json %>"
 style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;"
 unselectable="on" onselectstart="return false;" onmousedown="return false;">
   <% if @image['url'] %>
