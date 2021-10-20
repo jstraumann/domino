@@ -225,9 +225,9 @@ body[data-page=kuckucksei] {
     &.quadratisch.klein { width: $gallery_width * 1; }
     &.quadratisch.gross { width: $gallery_width * 2; }
 
-    &.hoch.mittel { width: $gallery_width * 1.2; }
-    &.hoch.klein { width: $gallery_width * 0.8; }
-    &.hoch.gross { width: $gallery_width * 2; }
+    &.hoch.mittel { height: 60%; }
+    &.hoch.klein { height: 40%; }
+    &.hoch.gross { height: 80%; }
 
     &.breit.mittel { width: $gallery_width * 1.5; }
     &.breit.klein { width: $gallery_width * 1.3; }
