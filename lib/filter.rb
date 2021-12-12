@@ -5,7 +5,20 @@ require 'open-uri'
 class Filter
   def self.all
     content = File.read('public/filters.json')
-    JSON.parse(content,  object_class: OpenStruct)
+    categories = JSON.parse(content,  object_class: OpenStruct)
+    categories.each do |c|
+      c.filters.each do |f|
+        f.count = 0
+        next if f.codes.nil?
+        f.codes.each do |code|
+          match = Filter.codes.find { |co| co.Code == code }
+          if match
+            f.count += match.Count
+          end
+        end
+      end
+    end
+    categories
   end
 
   def self.codes

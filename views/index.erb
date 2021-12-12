@@ -63,6 +63,7 @@
                         <div class="filter" data-kind="<%= f.kind || filter.kind %>" data-codes="<%= CGI.escapeHTML f.codes.to_json %>">
                           <div class="indicator"></div>
                           <%= f.name %>
+                          <span class="filter-count"><%= f.count %></span>
                         </div>
                       <% else %>
                         <div class="filter">&nbsp;</div>
