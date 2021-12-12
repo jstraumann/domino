@@ -45,7 +45,7 @@ class Domino < Sinatra::Base
   end
 
   get '/kuckucksei' do
-    redirect '/kuckucksei/Akt'
+    redirect '/kuckucksei/Köpfe'
   end
 
   get '/kuckucksei/:kind' do
