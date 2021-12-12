@@ -27,6 +27,7 @@
             <h3><%= c.title %></h3>
             (<%= c.username %>, <%= c.created_at.strftime('%d.%m.%Y') %>)
             <p><em><%= c.images.count %> Bilder</em></p>
+            <em>Kommentar: <%= c.comment || '-' %></em>
           </div>
         <% end %>
       </div>
@@ -35,7 +36,8 @@
       <div class="selection">
         <div class="info">
           <h3><%= c.title %></h3>
-          (<%= c.username %>, <%= c.created_at.strftime('%d.%m.%Y') %>)
+          (<%= c.username %>, <%= c.created_at.strftime('%d.%m.%Y') %>)<br>
+          <em>Kommentar: <%= c.comment || '-' %></em>
         </div>
         <div class="images">
           <% c.images.each do |image| %>

@@ -22,3 +22,7 @@
 input[data-nextpage='0'] {
   display: none;
 }
+
+.upside-down {
+  transform: rotate(180deg);
+}

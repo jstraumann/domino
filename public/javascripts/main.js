@@ -273,7 +273,8 @@ saveButton.addEventListener('click', function() {
   const prompt = new badgui.prompt('Speichern', 'Hier kannst du deine Bilderreihe oder deinen Kommentar unter deinem wirklichen oder einem Fantasienamen abspeichern. Gerne kannst du deine Reihe mit einem Titel versehen und/oder einen Kommentar abgeben.', {
     inputs: [
       { label: 'Titel', type: 'text', name: 'title', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false },
-      { label: 'Benutzer*innen-Name', type: 'text', name: 'username', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false }
+      { label: 'Benutzer*innen-Name', type: 'text', name: 'username', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false },
+      { label: 'Kommentar', type: 'text', name: 'comment', "data-kioskboard-type": "keyboard", "data-kioskboard-specialcharacters": false }
     ],
     buttons: [{
       label: 'Abbrechen', action: function() {
