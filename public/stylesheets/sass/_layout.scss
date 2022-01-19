@@ -97,8 +97,9 @@ input[type=text] {
       }
 
       .content {
-        padding: $global_padding;
+        padding: $global_padding * 0.75;
         padding-top: 0;
+        padding-left: 0;
 
         .filter {
           display: flex;
