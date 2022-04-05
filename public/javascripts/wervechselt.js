@@ -31,12 +31,12 @@ var img = document.querySelector(".img");
 var suggested = document.querySelector("#suggested");
 var correct = document.querySelector("#correct");
 
-var forward = document.getElementById("forward");
-var backward = document.getElementById("backward");
+var forward = document.querySelector("#forward");
+var backward = document.querySelector("#backward");
 
 var answers = document.querySelector('.answers');
-var richtig = document.getElementById("true");
-var falsch = document.getElementById("false");
+var richtig = document.querySelector("#true");
+var falsch = document.querySelector("#false");
 
 load();
 
@@ -76,11 +76,12 @@ function subtract() {
 function checkTrue() {
     var step = steps[index];
     setTimeout(function () {
-        correct.innerText = step.correct;
         correct.style.opacity = 1;
         if (step.suggested == step.correct) {
+            correct.innerText = 'Richtig!';
             correct.style.backgroundColor = "#66ffbf";
         } else {
+            correct.innerText = step.correct;
             correct.style.backgroundColor = "#f29779";
         }
     }, 2000);
@@ -89,11 +90,12 @@ function checkTrue() {
 function checkFalse() {
     var step = steps[index];
     setTimeout(function () {
-        correct.innerText = step.correct;
         correct.style.opacity = 1;
         if (step.suggested != step.correct) {
+            correct.innerText = 'Richtig!';
             correct.style.backgroundColor = "#66ffbf";
         } else {
+            correct.innerText = step.correct;
             correct.style.backgroundColor = "#f29779";
         }
     }, 2000);
