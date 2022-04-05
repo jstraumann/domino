@@ -44,6 +44,10 @@ class Domino < Sinatra::Base
     erb :schnupperlehre
   end
 
+  get '/wervechselt' do
+    erb :wervechselt
+  end
+
   get '/kuckucksei' do
     redirect '/kuckucksei/Köpfe'
   end
