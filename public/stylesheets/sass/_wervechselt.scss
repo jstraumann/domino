@@ -1,0 +1,68 @@
+body.wervechselt {
+    background-color: #999;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    h1 {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        background-color: white;
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+        text-align: center;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        box-sizing: border-box;
+    }
+    
+    .back {
+        position: absolute;
+        left: 5%;
+        top: 15%;
+        text-decoration: none;
+        color: black;
+    }
+    
+    .img {
+        height: 50vh;
+    }
+    
+    .btn {
+        width: unset;
+        margin: 24px;
+        background-color: white;
+        padding: 12px;
+        box-sizing: border-box;
+    }
+    
+    .btn.nomargin {
+        margin: 0;
+    }
+    
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        width: 90%;
+    }
+    
+    .row.wide {
+        width: 100%;
+    }
+    
+    .col {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 24px;
+    }
+    
+    #suggested, #correct {
+        background-color: white;
+        padding: 24px;
+    }
+}
