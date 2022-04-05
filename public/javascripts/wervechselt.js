@@ -4,7 +4,7 @@ var steps = [
     {path: "/wervechselt/1 6315 Kopie.jpg", suggested: "heitere Fahne!", correct: "heitere Fahne!"},
     {path: "/wervechselt/2 7402 Kopie.jpg", suggested: "Hund mit Hut", correct: "cf"},
     {path: "/wervechselt/3 8143 Kopie.jpg", suggested: "Big Air", correct: "Big Air"},
-    {path: "/wervechselt/4 7595 Kopie,jpg", suggested: "Plakatierer", correct: "trüber Teich und bunte Boje"},
+    {path: "/wervechselt/4 7595 Kopie.jpg", suggested: "Plakatierer", correct: "trüber Teich und bunte Boje"},
     {path: "/wervechselt/5 7636 Kopie.jpg",suggested: "trüber Teich und bunte Boje", correct: "Plakatierer"},
     {path: "/wervechselt/6 6742 Kopie.jpg", suggested: "Wüterich und Feingeist", correct: "Wüterich und Feingeist"},
     {path: "/wervechselt/7 0932 Kopie.jpg", suggested: "Good Day Sunshine", correct: "La haine (d’après Vallotton)"},
