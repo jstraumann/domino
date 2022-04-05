@@ -7,7 +7,7 @@ var steps = [
     {path: "/wervechselt/4 7595 Kopie,jpg", suggested: "Plakatierer", correct: "trüber Teich und bunte Boje"},
     {path: "/wervechselt/5 7636 Kopie.jpg",suggested: "trüber Teich und bunte Boje", correct: "Plakatierer"},
     {path: "/wervechselt/6 6742 Kopie.jpg", suggested: "Wüterich und Feingeist", correct: "Wüterich und Feingeist"},
-    {path: "/wervechselt/7 0932 Kopie.tif", suggested: "Good Day Sunshine", correct: "La haine (d’après Vallotton)"},
+    {path: "/wervechselt/7 0932 Kopie.jpg", suggested: "Good Day Sunshine", correct: "La haine (d’après Vallotton)"},
     {path: "/wervechselt/8 7845 Kopie.jpg", suggested: "La baigneuse (d‘après Vallotton)", correct: "Globus"},
     {path: "/wervechselt/9 2554_bearbeitet-1 Kopie.jpg", suggested: "Wagnerianer (in voller Fahrt)", correct: "Wagnerianer (in voller Fahrt)"},
     {path: "/wervechselt/10 8077 Kopie.jpg", suggested: "ein alter Musiker tut engelhaft", correct: "verwüstetes Stillleben"},
