@@ -339,7 +339,7 @@ offersButton.addEventListener('click', function() {
   infoButtons.forEach(btn => {
     btn.addEventListener('click', function() {
       const name = this.parentNode.getAttribute('data-name');
-      const infoText = document.querySelector('.fragments > .offers-' + name.toLowerCase().replace(' ', '')).innerHTML;
+      const infoText = document.querySelector('.fragments > .offers-' + name.toLowerCase().replace(' ', '').replace('.', '')).innerHTML;
       const a2 = new badgui.alert(name, infoText, {
         buttons: [{
           label: 'Schliessen', action: function() {
