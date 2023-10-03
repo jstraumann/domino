@@ -17,11 +17,20 @@ If you change the Ruby files, you need to stop and restart the server.
 
 Git push the code to the Dokku server.
 
-## Screen setup
+## Running
 
 Domino is made to be run on a 50" touch screen (or an equally sized monitor
-with IR touch frame). It can be interfaced by a Raspberry Pi by using the
-following setup:
+with IR touch frame). It can be interfaced by a Raspberry Pi or a HP EliteDesk
+800 by using the following setups:
+
+## HP EliteDesk
+
+* Install PopOS or similar
+* Install chromium: `sudo snap install chromium`
+* Disable the login prompt in `Settings` > `Users` > `Disable login prompt`
+* Autostart chromium in `Startup Applications`: `/usr/bin/chromium-browser --app=https://domino.juergstraumann.ch --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch`
+
+## Raspberry Pi setup
 
 * Flash Raspberry OS to an SD card
 * Insert the SD card into the Raspberry and boot it
